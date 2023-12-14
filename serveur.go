@@ -13,6 +13,8 @@ import (
 type Structure struct {
 	Hangman *HangManData
 	StrWord string
+	Status  string
+	Win     int
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
@@ -23,27 +25,56 @@ func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
 	template.Execute(w, infos)
 }
 
-func Info(w http.ResponseWriter, r *http.Request) {
-	template, err := template.ParseFiles("./pages/info.html", "./templates/footer.html", "./templates/header.html")
-	if err != nil {
-		log.Fatal(err)
+func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	if r.Method != http.MethodPost {
+		info.Init()
 	}
-	template.Execute(w, nil)
+
+	letter := r.FormValue("input")
+	if info.Hangman.UsedVerif(letter) {
+		info.Status = "USED"
+	} else {
+		if info.Hangman.MainMecanics(letter) {
+			info.Status = "WIN"
+		} else if info.Hangman.EndGame() {
+			if string(info.Hangman.Word) == info.Hangman.ToFind {
+				info.Status = "WIN"
+			} else {
+				info.Status = "LOSE"
+			}
+		} else {
+			info.Status = ""
+		}
+	}
+
+	info.StrWord = string(info.Hangman.Word)
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-func main() {
-	testBDD()
+func (myStruct *Structure) Init() {
 	var infos HangManData
 	infos.SetData()
 	infos.SetWord(ReadAllDico())
-	var myStruct Structure
 	myStruct.Hangman = &infos
 	myStruct.StrWord = string(infos.Word)
-	fmt.Println(myStruct.StrWord)
+	fmt.Println(myStruct.Hangman.ToFind)
+	myStruct.Status = ""
+}
+
+func main() {
+	var myStruct Structure
+	myStruct.Init()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		Home(w, r, myStruct)
 	})
-	http.HandleFunc("/hangman", Info)
+
+	http.HandleFunc("/hangman", func(w http.ResponseWriter, r *http.Request) {
+		hangmanHandler(w, r, &myStruct)
+	})
+
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static", fs))
 	http.ListenAndServe(":8080", nil)
