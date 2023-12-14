@@ -10,21 +10,26 @@
 {{template "header"}}
 
 <body>
-<main>
-  <form action="/hangman" method="post">
-    <label for="username">Nom d'utilisateur :</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <input type="submit" value="Envoyer">
-</form>
-</main>
 
 <div class="word">
   {{.StrWord}}
 </div>
+
+<main>
+  <form action="/hangman" method="post">
+    <label for="input">Input :</label>
+    <input type="text" id="input" name="input" required>
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+</main>
+
+{{if eq .Status "WIN"}}
+<h6>Cool</h6>
+{{end}}
+{{.Hangman.Attempts}}
+
 </body>
 
 {{template "footer"}}
