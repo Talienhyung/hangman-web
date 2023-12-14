@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	h "hangmanweb/BDD"
 	"html/template"
 	"log"
 	"net/http"
@@ -31,6 +32,7 @@ func Info(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	testBDD()
 	var infos HangManData
 	infos.SetData()
 	infos.SetWord(ReadAllDico())
@@ -45,4 +47,18 @@ func main() {
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static", fs))
 	http.ListenAndServe(":8080", nil)
+}
+
+func testBDD() {
+	var user h.Data
+	data := h.ReadAllData()
+	if !h.Log("tan@gmail.com", "jesuistan", data) {
+		fmt.Println("Pas de compte")
+		data = user.SetNewUserData("tan@gmail.com", "jesuistan", "Tan", data)
+	} else {
+		user.SetUserData("tan@gmail.com", data)
+		user.Win += 1
+	}
+	user.UploadUserData(data)
+	fmt.Println(user.Win)
 }
