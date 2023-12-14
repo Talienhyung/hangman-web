@@ -22,11 +22,14 @@
     <br>
     <input type="submit" value="submit">
 </form>
-
 </main>
 
 {{if eq .Status "WIN"}}
 <h6>Cool</h6>
+{{else if eq .Status "LOSE"}}
+<h6>Pas cool</h6>
+{{else if eq .Status "USED"}}
+<h6>DEJA UTILISE MON REUF</h6>
 {{end}}
 {{.Hangman.Attempts}}
 
