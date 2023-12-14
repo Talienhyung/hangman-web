@@ -1,0 +1,29 @@
+{{define "login"}}
+
+<form action="/login" method="post">
+    <label for="Email">Email :</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="Password">Password :</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Login">
+</form>
+
+{{end}}
+
+{{define "signin"}}
+<form action="/login" method="post">
+    <label for="Username">Username :</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="Email">Email :</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="password">Password :</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Signin">
+</form>
+
+{{end}}
