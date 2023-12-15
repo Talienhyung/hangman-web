@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	h "hangmanweb/BDD"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,8 +12,9 @@ import (
 
 type Structure struct {
 	Hangman *HangManData
+	Data    *h.Data
+	StrWord string
 	Status  string
-	Win     int
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
@@ -72,8 +74,16 @@ func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		info.Reload()
 	}
 	if info.Status == "WIN" {
-		info.Win += 1
+		info.Data.Win += 1
+		info.Data.Score += 1
+		if info.Data.Score > info.Data.BestScore {
+			info.Data.BestScore = info.Data.Score
+		}
+	} else if info.Status == "LOOSE" {
+		info.Data.Loose += 1
+		info.Data.Score = 0
 	}
+	info.Data.UploadUserData(h.ReadAllData())
 	info.Status = ""
 
 	// Redirect back to the main page
@@ -82,21 +92,45 @@ func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
+	data := h.ReadAllData()
 	action := r.FormValue("action")
+	if info.Status == "CONNEXION" {
+		switch action {
+		case "Signin":
+			info.Status = "SIGNIN"
+		case "Login":
+			info.Status = "LOGIN"
+		}
+	} else if info.Status == "SIGNIN" {
+		email := r.FormValue("email")
+		username := r.FormValue("username")
+		passw := r.FormValue("password")
 
-	switch action {
-	case "Signin":
-		info.Status = "SIGNIN"
-	case "Login":
-		info.Status = ""
+		if h.EmailAlreadyUsed(email, data) {
+			info.Status = "SIGNIN-ERROR"
+		} else {
+			data = info.Data.SetNewUserData(email, passw, username, data)
+			info.Data.UploadUserData(data)
+			info.Status = ""
+		}
+	} else if info.Status == "LOGIN" {
+		email := r.FormValue("email")
+		passw := r.FormValue("password")
+		if !h.Log(email, passw, data) {
+			info.Status = "LOGIN-ERROR"
+		} else {
+			info.Data.SetUserData(email, data)
+			info.Status = ""
+		}
 	}
-
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func main() {
 	var myStruct Structure
+	var userData h.Data
+	myStruct.Data = &userData
 	myStruct.Init()
 	myStruct.Status = "CONNEXION"
 
