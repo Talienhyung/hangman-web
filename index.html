@@ -50,10 +50,16 @@
 </form>
 {{else if eq .Status "CONNEXION"}}
 {{template "connexion page"}}
-{{else if eq .Status "LOGIN"}}
+{{else if or (eq .Status "LOGIN") (eq .Status "LOGIN-ERROR")}}
 {{template "login"}}
-{{else if eq .Status "SIGNIN"}}
+{{if eq .Status "LOGIN-ERROR"}}
+<p>Wrong email or passw</p>
+{{end}}
+{{else if or (eq .Status "SIGNIN") (eq .Status "SIGNIN-ERROR")}}
 {{template "signin"}}
+{{if eq .Status "LOGIN-ERROR"}}
+<p>Email already used</p>
+{{end}}
 {{end}}
 
 {{.Hangman.Attempts}}
