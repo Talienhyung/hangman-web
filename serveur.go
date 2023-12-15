@@ -11,13 +11,12 @@ import (
 
 type Structure struct {
 	Hangman *HangManData
-	StrWord string
 	Status  string
 	Win     int
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
-	template, err := template.ParseFiles("./index.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html")
+	template, err := template.ParseFiles("./index.html", "./templates/game.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,8 +45,6 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		}
 	}
 
-	info.StrWord = string(info.Hangman.Word)
-
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
@@ -57,7 +54,6 @@ func (myStruct *Structure) Init() {
 	infos.SetData()
 	infos.SetWord(ReadAllDico())
 	myStruct.Hangman = &infos
-	myStruct.StrWord = string(infos.Word)
 	fmt.Println(myStruct.Hangman.ToFind)
 	myStruct.Status = ""
 }
@@ -76,5 +72,7 @@ func main() {
 
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static", fs))
+	fss := http.FileServer(http.Dir("Ressources/"))
+	http.Handle("/Ressources/", http.StripPrefix("/Ressources", fss))
 	http.ListenAndServe(":8080", nil)
 }
