@@ -13,7 +13,6 @@ import (
 type Structure struct {
 	Hangman *HangManData
 	Data    *h.Data
-	StrWord string
 	Status  string
 }
 
@@ -62,8 +61,6 @@ func (myStruct *Structure) Init() {
 func (data *Structure) Reload() {
 	data.Hangman.SetData()
 	data.Hangman.SetWord(ReadAllDico())
-	data.StrWord = string(data.Hangman.Word)
-	data.StrWord = string(data.Hangman.Word)
 	fmt.Println(data.Hangman.ToFind)
 }
 
