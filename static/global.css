@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    /* fonts */
+    --font-kodchasan: Kodchasan;
+  
+    /* Colors */
+    --english-violet: #413c58;
+    --darkseagreen: #bfd7b5;
+    --cream: #e7efc5;
+    --color-black: #000;
+    --ash-gray: #a3c4bc;
+
+  }
+  
