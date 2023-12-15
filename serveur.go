@@ -17,7 +17,7 @@ type Structure struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
-	template, err := template.ParseFiles("./index.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html")
+	template, err := template.ParseFiles("./index.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html", "./templates/connexion.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -59,12 +59,50 @@ func (myStruct *Structure) Init() {
 	myStruct.Hangman = &infos
 	myStruct.StrWord = string(infos.Word)
 	fmt.Println(myStruct.Hangman.ToFind)
-	myStruct.Status = ""
+}
+
+func (data *Structure) Reload() {
+	data.Hangman.SetData()
+	data.Hangman.SetWord(ReadAllDico())
+	data.StrWord = string(data.Hangman.Word)
+	data.StrWord = string(data.Hangman.Word)
+	fmt.Println(data.Hangman.ToFind)
+}
+
+func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	action := r.FormValue("action")
+
+	if action == "Reload" {
+		info.Reload()
+	}
+	if info.Status == "WIN" {
+		info.Win += 1
+	}
+	info.Status = ""
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+
+	action := r.FormValue("action")
+
+	switch action {
+	case "Signin":
+		info.Status = "SIGNIN"
+	case "Login":
+		info.Status = ""
+	}
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func main() {
 	var myStruct Structure
 	myStruct.Init()
+	myStruct.Status = "CONNEXION"
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		Home(w, r, myStruct)
@@ -72,6 +110,14 @@ func main() {
 
 	http.HandleFunc("/hangman", func(w http.ResponseWriter, r *http.Request) {
 		hangmanHandler(w, r, &myStruct)
+	})
+
+	http.HandleFunc("/reload", func(w http.ResponseWriter, r *http.Request) {
+		relaodHandler(w, r, &myStruct)
+	})
+
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+		connexionHandler(w, r, &myStruct)
 	})
 
 	fs := http.FileServer(http.Dir("static/"))
