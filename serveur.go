@@ -40,7 +40,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 			if string(info.Hangman.Word) == info.Hangman.ToFind {
 				info.Status = "WIN"
 			} else {
-				info.Status = "LOSE"
+				info.Status = "LOOSE"
 			}
 		} else {
 			info.Status = ""
@@ -101,7 +101,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		case "Login":
 			info.Status = "LOGIN"
 		}
-	} else if info.Status == "SIGNIN" {
+	} else if info.Status == "SIGNIN" || info.Status == "SIGNIN-ERROR" {
 		email := r.FormValue("email")
 		username := r.FormValue("username")
 		passw := r.FormValue("password")
@@ -113,7 +113,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 			info.Data.UploadUserData(data)
 			info.Status = ""
 		}
-	} else if info.Status == "LOGIN" {
+	} else if info.Status == "LOGIN" || info.Status == "LOGIN-ERROR" {
 		email := r.FormValue("email")
 		passw := r.FormValue("password")
 		if !h.Log(email, passw, data) {
