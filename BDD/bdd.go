@@ -8,15 +8,17 @@ import (
 )
 
 type Data struct {
-	Username string
-	Email    string
-	Password string
-	Win      int
-	Loose    int
+	Username  string
+	Email     string
+	Password  string
+	Win       int
+	Loose     int
+	Score     int
+	BestScore int
 }
 
 func (data *Data) UploadUserData(allData [][]string) {
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose)}
+	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore)}
 	allData = RemplaceData(userData, allData)
 	file, err := os.Create("./BDD/data.csv")
 	if err != nil {
@@ -61,9 +63,9 @@ func ReadAllData() [][]string {
 }
 
 func RemplaceData(userData []string, data [][]string) [][]string {
-	for _, i := range data {
+	for user, i := range data {
 		if i[1] == userData[1] {
-			i = userData
+			data[user] = userData
 		}
 	}
 	return data
@@ -75,7 +77,9 @@ func (data *Data) SetNewUserData(email, password, username string, allData [][]s
 	data.Username = username
 	data.Loose = 0
 	data.Win = 0
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose)}
+	data.Score = 0
+	data.BestScore = 0
+	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore)}
 	allData = append(allData, userData)
 	return allData
 }
@@ -105,6 +109,14 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 		log.Fatal(err)
 	}
 	userData.Win, err = strconv.Atoi(tab[4])
+	if err != nil {
+		log.Fatal(err)
+	}
+	userData.Score, err = strconv.Atoi(tab[5])
+	if err != nil {
+		log.Fatal(err)
+	}
+	userData.BestScore, err = strconv.Atoi(tab[6])
 	if err != nil {
 		log.Fatal(err)
 	}
