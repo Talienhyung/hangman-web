@@ -1,0 +1,56 @@
+
+{{define "play"}}
+
+<div class="main-container">
+    <div class="container-border">
+        <div class="item letter">
+            {{range .Hangman.ListLetter}}
+                {{printf "%c" .}}
+            {{end}}
+        </div>
+        <div class="item attempts">
+            {{.Hangman.Attempts}}
+        </div>
+        <div class="item letter">
+            {{range .Hangman.ListWord}}
+                {{.}}
+            {{end}}
+        </div>
+    </div>
+    <div class="container-center">
+        <div class="item attempts">
+            {{range .Hangman.Word}}
+                {{printf "%c" .}}
+            {{end}}
+        </div>
+        <div class="image">
+            {{if eq .Hangman.HangmanPositions 0}}
+            <img src="../Ressources/HangmanPos/hangman0.png" alt="HangMan">
+            {{else}}
+            <img src="../Ressources/HangmanPos/hangman{{.Hangman.HangmanPositions}}.png" alt="HangMan">
+            {{end}}
+        </div>
+        <div class="item letter">
+            <form action="/hangman" method="post">
+                <input type="text" id="input" name="input" required>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+    <div class="container-border">
+        <div class="item">
+            <div class="attempts">TAN</div>
+            <div class="letter">STAT</div>
+        </div>
+        <div class="item">
+            <div class="attempts">21</div>
+            <div class="letter">SCORE</div>
+        </div>
+        <div class="item">
+            <div class="attempts">16</div>
+            <div class="letter">BEST SCORE</div>
+        </div>
+    </div>
+</div>
+
+{{end}}
