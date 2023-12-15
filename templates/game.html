@@ -34,20 +34,23 @@
             <form action="/hangman" method="post">
                 <input type="text" id="input" name="input" required>
                 <input type="submit" value="submit">
+                {{if eq .Status "USED"}}
+                <p class="item letter">Already guessed</p>
+                {{end}}
             </form>
         </div>
     </div>
     <div class="container-border">
         <div class="item">
-            <div class="attempts">TAN</div>
+            <div class="attempts">{{.Data.Username}}</div>
             <div class="letter">STAT</div>
         </div>
         <div class="item">
-            <div class="attempts">21</div>
+            <div class="attempts">{{.Data.Score}}</div>
             <div class="letter">SCORE</div>
         </div>
         <div class="item">
-            <div class="attempts">16</div>
+            <div class="attempts">{{.Data.BestScore}}</div>
             <div class="letter">BEST SCORE</div>
         </div>
     </div>
