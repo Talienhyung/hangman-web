@@ -11,6 +11,7 @@
 
 <body>
 
+{{if or (eq .Status "") (eq .Status "USED")}}
 <div class="word">
   {{.StrWord}}
 </div>
@@ -23,14 +24,28 @@
     <input type="submit" value="submit">
 </form>
 </main>
-
-{{if eq .Status "WIN"}}
-<h6>Cool</h6>
-{{else if eq .Status "LOSE"}}
-<h6>Pas cool</h6>
-{{else if eq .Status "USED"}}
+{{if eq .Status "USED"}}
 <h6>DEJA UTILISE MON REUF</h6>
 {{end}}
+
+{{else if eq .Status "WIN"}}
+<h6>Cool</h6>
+<form action="/reload" method="post">
+  <input type="submit" name="action" value="Reload">
+</form>
+{{else if eq .Status "LOSE"}}
+<h6>Pas cool</h6>
+<form action="/reload" method="post">
+  <input type="submit" name="action" value="Reload">
+</form>
+{{else if eq .Status "CONNEXION"}}
+{{template "connexion page"}}
+{{else if eq .Status "LOGIN"}}
+{{template "login"}}
+{{else if eq .Status "SIGNIN"}}
+{{template "signin"}}
+{{end}}
+
 {{.Hangman.Attempts}}
 
 </body>
