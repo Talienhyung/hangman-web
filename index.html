@@ -16,28 +16,10 @@
 
 <body>
 
-<<<<<<< HEAD
 
-{{template "play" .}}
 
-=======
 {{if or (eq .Status "") (eq .Status "USED")}}
-<div class="word">
-  {{.StrWord}}
-</div>
-
-<main>
-  <form action="/hangman" method="post">
-    <label for="input">Input :</label>
-    <input type="text" id="input" name="input" required>
-    <br>
-    <input type="submit" value="submit">
-</form>
-</main>
-{{if eq .Status "USED"}}
-<h6>DEJA UTILISE MON REUF</h6>
-{{end}}
-
+{{template "play" .}}
 {{else if eq .Status "WIN"}}
 <h6>Cool</h6>
 <form action="/reload" method="post">
@@ -62,8 +44,6 @@
 {{end}}
 {{end}}
 
-{{.Hangman.Attempts}}
->>>>>>> 9e7ea92 (feat : Add connexion template to the main page)
 
 </body>
 
