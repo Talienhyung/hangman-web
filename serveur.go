@@ -55,12 +55,50 @@ func (myStruct *Structure) Init() {
 	infos.SetWord(ReadAllDico())
 	myStruct.Hangman = &infos
 	fmt.Println(myStruct.Hangman.ToFind)
-	myStruct.Status = ""
+}
+
+func (data *Structure) Reload() {
+	data.Hangman.SetData()
+	data.Hangman.SetWord(ReadAllDico())
+	data.StrWord = string(data.Hangman.Word)
+	data.StrWord = string(data.Hangman.Word)
+	fmt.Println(data.Hangman.ToFind)
+}
+
+func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	action := r.FormValue("action")
+
+	if action == "Reload" {
+		info.Reload()
+	}
+	if info.Status == "WIN" {
+		info.Win += 1
+	}
+	info.Status = ""
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+
+	action := r.FormValue("action")
+
+	switch action {
+	case "Signin":
+		info.Status = "SIGNIN"
+	case "Login":
+		info.Status = ""
+	}
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func main() {
 	var myStruct Structure
 	myStruct.Init()
+	myStruct.Status = "CONNEXION"
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		Home(w, r, myStruct)
@@ -68,6 +106,14 @@ func main() {
 
 	http.HandleFunc("/hangman", func(w http.ResponseWriter, r *http.Request) {
 		hangmanHandler(w, r, &myStruct)
+	})
+
+	http.HandleFunc("/reload", func(w http.ResponseWriter, r *http.Request) {
+		relaodHandler(w, r, &myStruct)
+	})
+
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+		connexionHandler(w, r, &myStruct)
 	})
 
 	fs := http.FileServer(http.Dir("static/"))
