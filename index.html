@@ -17,20 +17,7 @@
 <body>
 
 
-
-{{if or (eq .Status "") (eq .Status "USED")}}
-{{template "play" .}}
-{{else if eq .Status "WIN"}}
-<h6>Cool</h6>
-<form action="/reload" method="post">
-  <input type="submit" name="action" value="Reload">
-</form>
-{{else if eq .Status "LOOSE"}}
-<h6>Pas cool</h6>
-<form action="/reload" method="post">
-  <input type="submit" name="action" value="Reload">
-</form>
-{{else if eq .Status "CONNEXION"}}
+{{if eq .Status "CONNEXION"}}
 {{template "connexion page"}}
 {{else if or (eq .Status "LOGIN") (eq .Status "LOGIN-ERROR")}}
 {{template "login"}}
@@ -39,11 +26,12 @@
 {{end}}
 {{else if or (eq .Status "SIGNIN") (eq .Status "SIGNIN-ERROR")}}
 {{template "signin"}}
-{{if eq .Status "LOGIN-ERROR"}}
+{{if eq .Status "SIGNIN-ERROR"}}
 <p>Email already used</p>
 {{end}}
+{{else}}
+{{template "play" .}}
 {{end}}
-
 
 </body>
 
