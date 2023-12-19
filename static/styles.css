@@ -1,17 +1,7 @@
-/* Reset CSS */
-
 body {
-    font-family: 'Roboto Condensed', sans-serif;
-    line-height: 1.6;
     background-color: #fff;
+    font-family: var(--font-kodchasan);
 }
-
-/* header {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-} */
 
 main {
     padding: 20px;
@@ -21,12 +11,10 @@ footer {
     background-color: var(--ash-gray);
     font-family: var(--font-kodchasan);
     color: black;
-    padding: 1em;
     bottom: 0;
     text-align: center;
     position: fixed;
-    width: 100%; 
-    height: 10px;
+    width: 100%;
 }
 
 
@@ -46,11 +34,6 @@ input {
 
 label {
   padding-right: 10px;
-}
-
-.buttoon {
-  background-color: red;
-  padding-left: 200px;
 }
 
 .word {
@@ -73,10 +56,11 @@ label {
 
 header{
     width: 100%;
-    height: 94px;
+    height: 9vh;
     color:black;
-    background: var(--ASH-GRAY, #A3C4BC);
-
+    background: var(--ash-gray);
+    font-size: 1em;
+    line-height: 1em;
 }
 
 
@@ -115,11 +99,11 @@ header{
 .btn {
   color: black;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 2vw;
   font-weight: 400;
   line-height: 45px;
   margin: 0 0 2em;
-  max-width: 160px;
+  max-width: 100%;
   position: relative;
   text-decoration: none;
   width: 100%;
@@ -129,13 +113,13 @@ header{
 
 .titre {
   text-transform: uppercase;
-  font-size: 40px;
+  font-size: 3vw;
 }
 /* ================================================================ fin bouton entete */
 
 .container-border{
   border-radius: 36px;
-  background: var(--TEA-GREEN, #BFD7B5);
+  background: var(--tea-green);
   width: 18%;
   height:100% ;
   flex-direction: column;
@@ -147,7 +131,7 @@ header{
 
 .container-center{
   border-radius: 52px;
-  background: var(--CREAM, #E7EFC5);
+  background: var(--cream);
   width: 51%;
   height:100% ;
   flex-direction: column;
@@ -166,13 +150,13 @@ header{
 }
 
 .letter{
-  color: var(--ENGLISH-VIOLET, #413C58);
+  color: var(--english-violet);
   font-size: 22px;
   text-transform: uppercase;
 }
 
 .attempts{
-  color: var(--ENGLISH-VIOLET, #413C58);
+  color: var(--english-violet);
   font-size: 60px;
 }
 
@@ -185,4 +169,45 @@ header{
 .image{
   image-rendering: optimizeQuality;
   text-align: center;
+  size-adjust: 50hv;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.connexion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  margin: 0;
+}
+
+input[type="submit"] {
+  border-radius: 5px; 
+  border-color: var(--tea-green);
+  background-color: var(--tea-green) ; 
+  color: var(--english-violet); 
+  padding: 10px 20px; 
+  cursor: pointer;
+  font-family: var(--font-kodchasan);
+  height: 100vh;
+  max-width: 100%;
+  height: auto;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--cream); 
+}
+
+input[type="text"]{
+  max-width: 100%;
+  height: auto;
+}
+
+form{
+  max-width: 100%;
+  height: auto;
 }
