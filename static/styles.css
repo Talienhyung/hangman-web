@@ -117,38 +117,6 @@ header{
 }
 /* ================================================================ fin bouton entete */
 
-.container-border{
-  border-radius: 36px;
-  background: var(--tea-green);
-  width: 18%;
-  height:100% ;
-  flex-direction: column;
-  justify-content: space-around;
-  display: flex;
-  overflow: hidden;
-}
-
-
-.container-center{
-  border-radius: 52px;
-  background: var(--cream);
-  width: 51%;
-  height:100% ;
-  flex-direction: column;
-  justify-content: space-around;
-  display: flex;
-}
-
-.main-container{
-  margin-top: 1em;
-  width: 100%;
-  max-width: 100%;
-  height: 520px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
 .letter{
   color: var(--english-violet);
   font-size: 22px;
@@ -210,4 +178,71 @@ input[type="text"]{
 form{
   max-width: 100%;
   height: auto;
+}
+
+@media screen and (max-width: 600px){
+  .container-border{
+    border-radius: 36px;
+    background: var(--tea-green);
+    width: 100%;
+    height:7% ;
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .container-center{
+    border-radius: 52px;
+    background: var(--cream);
+    width: 100%;
+    height:80% ;
+    flex-direction: column;
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .main-container{
+    margin-top: 1em;
+    width: 100%;
+    max-width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}
+
+
+@media screen and (min-width: 601px){
+  .container-border{
+    border-radius: 36px;
+    background: var(--tea-green);
+    width: 18%;
+    height:100% ;
+    flex-direction: column;
+    justify-content: space-around;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .container-center{
+    border-radius: 52px;
+    background: var(--cream);
+    width: 51%;
+    height:100% ;
+    flex-direction: column;
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .main-container{
+    margin-top: 1em;
+    width: 100%;
+    max-width: 100%;
+    height: 520px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
