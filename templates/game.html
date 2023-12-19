@@ -31,13 +31,27 @@
             {{end}}
         </div>
         <div class="item letter">
+            {{if or (eq .Status "USED") (eq .Status "")}}
             <form action="/hangman" method="post">
                 <input type="text" id="input" name="input" required>
                 <input type="submit" value="submit">
-                {{if eq .Status "USED"}}
+            </form>
+            {{end}}
+            {{if eq .Status "USED"}}
                 <p class="item letter">Already guessed</p>
                 {{end}}
-            </form>
+                {{if eq .Status "WIN"}}
+                <p class="item letter">You win !!!</p>
+                <form action="/reload" method="post">
+                    <input type="submit" name="action" value="Reload">
+                </form>
+                {{end}}
+                {{if eq .Status "LOOSE"}}
+                <p class="item letter">You loose !!!</p>
+                <form action="/reload" method="post">
+                    <input type="submit" name="action" value="Reload">
+                </form>
+                {{end}}
         </div>
     </div>
     <div class="container-border">
