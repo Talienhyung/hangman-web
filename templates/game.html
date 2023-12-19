@@ -71,3 +71,12 @@
 </div>
 
 {{end}}
+
+
+{{define "Level"}}
+<form class="connexion" action="/level" method="post">
+    <input class="button-connect" type="submit" name="action" value="Easy">
+    <input class="button-connect" type="submit" name="action" value="Medium ">
+    <input class="button-connect" type="submit" name="action" value="Hard">
+</form>
+{{end}}
