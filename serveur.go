@@ -13,7 +13,6 @@ import (
 type Structure struct {
 	Hangman *HangManData
 	Data    *h.Data
-	StrWord string
 	Status  string
 }
 
@@ -47,8 +46,6 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		}
 	}
 
-	info.StrWord = string(info.Hangman.Word)
-
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
@@ -58,15 +55,12 @@ func (myStruct *Structure) Init() {
 	infos.SetData()
 	infos.SetWord(ReadAllDico())
 	myStruct.Hangman = &infos
-	myStruct.StrWord = string(infos.Word)
 	fmt.Println(myStruct.Hangman.ToFind)
 }
 
 func (data *Structure) Reload() {
 	data.Hangman.SetData()
 	data.Hangman.SetWord(ReadAllDico())
-	data.StrWord = string(data.Hangman.Word)
-	data.StrWord = string(data.Hangman.Word)
 	fmt.Println(data.Hangman.ToFind)
 }
 
@@ -97,33 +91,42 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 	data := h.ReadAllData()
 	action := r.FormValue("action")
-	if info.Status == "CONNEXION" {
+	switch info.Status {
+	case "CONNEXION":
 		switch action {
 		case "Signin":
 			info.Status = "SIGNIN"
 		case "Login":
 			info.Status = "LOGIN"
 		}
-	} else if info.Status == "SIGNIN" || info.Status == "SIGNIN-ERROR" {
-		email := r.FormValue("email")
-		username := r.FormValue("username")
-		passw := r.FormValue("password")
+	case "SIGNIN", "SIGNIN-ERROR":
+		if action == "Login" {
+			info.Status = "LOGIN"
+		} else {
+			email := r.FormValue("email")
+			username := r.FormValue("username")
+			passw := r.FormValue("password")
 
-		if h.EmailAlreadyUsed(email, data) {
-			info.Status = "SIGNIN-ERROR"
-		} else {
-			data = info.Data.SetNewUserData(email, passw, username, data)
-			info.Data.UploadUserData(data)
-			info.Status = ""
+			if h.EmailAlreadyUsed(email, data) {
+				info.Status = "SIGNIN-ERROR"
+			} else {
+				data = info.Data.SetNewUserData(email, passw, username, data)
+				info.Data.UploadUserData(data)
+				info.Status = ""
+			}
 		}
-	} else if info.Status == "LOGIN" || info.Status == "LOGIN-ERROR" {
-		email := r.FormValue("email")
-		passw := r.FormValue("password")
-		if !h.Log(email, passw, data) {
-			info.Status = "LOGIN-ERROR"
+	case "LOGIN", "LOGIN-ERROR":
+		if action == "Signin" {
+			info.Status = "SIGNIN"
 		} else {
-			info.Data.SetUserData(email, data)
-			info.Status = ""
+			email := r.FormValue("email")
+			passw := r.FormValue("password")
+			if !h.Log(email, passw, data) {
+				info.Status = "LOGIN-ERROR"
+			} else {
+				info.Data.SetUserData(email, data)
+				info.Status = ""
+			}
 		}
 	}
 	// Redirect back to the main page
@@ -155,5 +158,7 @@ func main() {
 
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static", fs))
+	fss := http.FileServer(http.Dir("Ressources/"))
+	http.Handle("/Ressources/", http.StripPrefix("/Ressources", fss))
 	http.ListenAndServe(":8080", nil)
 }

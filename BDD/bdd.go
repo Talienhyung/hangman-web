@@ -50,7 +50,7 @@ func ReadAllData() [][]string {
 		log.Fatal(err)
 	}
 
-	// remember to close the file at the end of the program
+	// close the file at the end of the program
 	defer f.Close()
 
 	// read csv values using csv.Reader

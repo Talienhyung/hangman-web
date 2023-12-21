@@ -9,6 +9,9 @@
     <br>
     <input type="submit" value="Login">
 </form>
+<form action="/login" method="post">
+    <input class="button-connect" type="submit" name="action" value="Signin">
+</form>
 
 {{end}}
 
@@ -25,12 +28,15 @@
     <br>
     <input type="submit" value="Signin">
 </form>
+<form action="/login" method="post">
+    <input class="button-connect" type="submit" name="action" value="Login">
+</form>
 
 {{end}}
 
 {{define "connexion page"}}
-<form action="/login" method="post">
-    <input type="submit" name="action" value="Signin">
-    <input type="submit" name="action" value="Login">
+<form class="connexion" action="/login" method="post">
+    <input class="button-connect" type="submit" name="action" value="Signin">
+    <input class="button-connect" type="submit" name="action" value="Login">
 </form>
 {{end}}

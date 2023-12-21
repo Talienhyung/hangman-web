@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="./static/global.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400&display=swap"
+    />
     <title>Hangman</title>
 </head>
 
@@ -11,34 +16,8 @@
 
 <body>
 
-{{if or (eq .Status "") (eq .Status "USED")}}
-<div class="word">
-  {{.StrWord}}
-</div>
 
-<main>
-  <form action="/hangman" method="post">
-    <label for="input">Input :</label>
-    <input type="text" id="input" name="input" required>
-    <br>
-    <input type="submit" value="submit">
-</form>
-</main>
-{{if eq .Status "USED"}}
-<h6>DEJA UTILISE MON REUF</h6>
-{{end}}
-
-{{else if eq .Status "WIN"}}
-<h6>Cool</h6>
-<form action="/reload" method="post">
-  <input type="submit" name="action" value="Reload">
-</form>
-{{else if eq .Status "LOOSE"}}
-<h6>Pas cool</h6>
-<form action="/reload" method="post">
-  <input type="submit" name="action" value="Reload">
-</form>
-{{else if eq .Status "CONNEXION"}}
+{{if eq .Status "CONNEXION"}}
 {{template "connexion page"}}
 {{else if or (eq .Status "LOGIN") (eq .Status "LOGIN-ERROR")}}
 {{template "login"}}
@@ -47,12 +26,12 @@
 {{end}}
 {{else if or (eq .Status "SIGNIN") (eq .Status "SIGNIN-ERROR")}}
 {{template "signin"}}
-{{if eq .Status "LOGIN-ERROR"}}
+{{if eq .Status "SIGNIN-ERROR"}}
 <p>Email already used</p>
 {{end}}
+{{else}}
+{{template "play" .}}
 {{end}}
-
-{{.Hangman.Attempts}}
 
 </body>
 
