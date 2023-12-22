@@ -17,7 +17,7 @@ type Structure struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
-	template, err := template.ParseFiles("./index.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html", "./templates/connexion.html")
+	template, err := template.ParseFiles("./index.html", "./templates/game.html", "./templates/connexion.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html")
 	if err != nil {
 		log.Fatal(err)
 	}
