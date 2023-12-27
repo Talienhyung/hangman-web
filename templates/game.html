@@ -18,6 +18,12 @@
         </div>
     </div>
     <div class="container-center">
+        {{if eq .Hangman.ToFind ""}}
+        <div class="item attempts">
+            Welcome
+        </div>
+        <div class="item letter"><div>{{template "Level"}}</div></div>
+        {{else}}
         <div class="item attempts">
             {{range .Hangman.Word}}
                 {{printf "%c" .}}
@@ -32,17 +38,18 @@
             </form>
             {{end}}
             {{if eq .Status "USED"}}
-                <p class="item letter">Already guessed</p>
-                {{end}}
-                {{if eq .Status "WIN"}}
-                <p class="item letter">You win !!!</p>
-                <div>{{template "Level"}}</div>
-                {{end}}
-                {{if eq .Status "LOOSE"}}
-                <p class="item letter">You loose !!!</p>
-                <div>{{template "Level"}}</div>
-                {{end}}
+            <p class="item letter">Already guessed</p>
+            {{end}}
+            {{if eq .Status "WIN"}}
+            <p class="item letter">You win !!!</p>
+            <div>{{template "Level"}}</div>
+            {{end}}
+            {{if eq .Status "LOOSE"}}
+            <p class="item letter">You loose !!!</p>
+            <div>{{template "Level"}}</div>
+            {{end}}
         </div>
+        {{end}}
     </div>
     <div class="container-border">
         <div class="item">

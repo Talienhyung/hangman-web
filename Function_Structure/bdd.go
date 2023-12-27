@@ -7,19 +7,6 @@ import (
 	"strconv"
 )
 
-type Data struct {
-	Username  string
-	Email     string
-	Password  string
-	Win       int
-	Loose     int
-	Score     int
-	BestScore int
-	WinHard   int
-	WinMedium int
-	WinEasy   int
-}
-
 func (data *Data) UploadUserData(allData [][]string) {
 	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore), strconv.Itoa(data.WinHard), strconv.Itoa(data.WinMedium), strconv.Itoa(data.WinEasy)}
 	allData = RemplaceData(userData, allData)
