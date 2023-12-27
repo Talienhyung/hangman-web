@@ -14,10 +14,11 @@ type Structure struct {
 	Hangman *HangManData
 	Data    *h.Data
 	Status  string
+	Level   string
 }
 
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
-	template, err := template.ParseFiles("./index.html", "./templates/game.html", "./templates/connexion.html", "./templates/footer.html", "./templates/header.html", "./pages/info.html")
+	template, err := template.ParseFiles("./index.html", "./templates/game.html", "./templates/connexion.html", "./templates/footer.html", "./templates/hangman.html", "./templates/header.html", "./pages/info.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,21 +59,22 @@ func (myStruct *Structure) Init() {
 	fmt.Println(myStruct.Hangman.ToFind)
 }
 
-func (data *Structure) Reload() {
-	data.Hangman.SetData()
-	data.Hangman.SetWord(ReadAllDico())
-	fmt.Println(data.Hangman.ToFind)
-}
-
-func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
-	action := r.FormValue("action")
-
-	if action == "Reload" {
-		info.Reload()
-	}
+func (info *Structure) Reload(level string) {
+	info.Hangman.SetData()
 	if info.Status == "WIN" {
+		switch info.Level {
+		case "Easy":
+			info.Data.Score += 1
+			info.Data.WinEasy += 1
+		case "Medium":
+			info.Data.Score += 2
+			info.Data.WinMedium += 1
+		case "Hard":
+			info.Data.Score += 3
+			info.Data.WinHard += 1
+		}
+
 		info.Data.Win += 1
-		info.Data.Score += 1
 		if info.Data.Score > info.Data.BestScore {
 			info.Data.BestScore = info.Data.Score
 		}
@@ -82,7 +84,24 @@ func relaodHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	}
 	info.Data.UploadUserData(h.ReadAllData())
 	info.Status = ""
+}
 
+func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	action := r.FormValue("action")
+
+	info.Reload(action)
+	switch action {
+	case "Easy":
+		info.Hangman.SetWord(ReadTheDico("words.txt"))
+		info.Level = "Easy"
+	case "Medium":
+		info.Hangman.SetWord(ReadTheDico("words2.txt"))
+		info.Level = "Medium"
+	case "Hard":
+		info.Hangman.SetWord(ReadTheDico("words3.txt"))
+		info.Level = "Hard"
+	}
+	fmt.Println(info.Hangman.ToFind)
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
@@ -148,8 +167,8 @@ func main() {
 		hangmanHandler(w, r, &myStruct)
 	})
 
-	http.HandleFunc("/reload", func(w http.ResponseWriter, r *http.Request) {
-		relaodHandler(w, r, &myStruct)
+	http.HandleFunc("/level", func(w http.ResponseWriter, r *http.Request) {
+		levelHandler(w, r, &myStruct)
 	})
 
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
