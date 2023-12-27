@@ -7,8 +7,6 @@ Your mission, if you accept it, is to guess the mystery word before you hang!
 
 How it works :
 
-A secret word will be chosen at random from those you've provided (argument file see --help). 
-
 To put you on the right track, some letters of this secret word will be revealed. 
 
 Your Super Power:
@@ -25,8 +23,3 @@ But be careful, every mistake will bring you closer to the hanged man! If you're
 =========
 
 So let the game begin!
-
-
-Note : 
-To quit the game enter QUIT
-To save and exit the game enter STOP
