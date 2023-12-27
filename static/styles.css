@@ -246,3 +246,25 @@ form{
     justify-content: space-evenly;
   }
 }
+
+
+
+/* ----------------------- */
+
+.hangman {
+	fill: none;
+	stroke: var(--cream);
+	stroke-width: 2;
+  transition: 0.30s;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+}
+
+.display {
+	stroke: var(--english-violet);
+	display: grid;
+}
+
+.dead {
+  stroke: red;
+}
