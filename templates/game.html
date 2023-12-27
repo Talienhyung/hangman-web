@@ -23,13 +23,7 @@
                 {{printf "%c" .}}
             {{end}}
         </div>
-        <div class="image">
-            {{if eq .Hangman.HangmanPositions 0}}
-            <img src="../Ressources/HangmanPos/hangman0.png" alt="HangMan">
-            {{else}}
-            <img src="../Ressources/HangmanPos/hangman{{.Hangman.HangmanPositions}}.png" alt="HangMan">
-            {{end}}
-        </div>
+        {{template "hangman" .}}
         <div class="item letter">
             {{if or (eq .Status "USED") (eq .Status "")}}
             <form action="/hangman" method="post">
@@ -42,15 +36,11 @@
                 {{end}}
                 {{if eq .Status "WIN"}}
                 <p class="item letter">You win !!!</p>
-                <form action="/reload" method="post">
-                    <input type="submit" name="action" value="Reload">
-                </form>
+                <div>{{template "Level"}}</div>
                 {{end}}
                 {{if eq .Status "LOOSE"}}
                 <p class="item letter">You loose !!!</p>
-                <form action="/reload" method="post">
-                    <input type="submit" name="action" value="Reload">
-                </form>
+                <div>{{template "Level"}}</div>
                 {{end}}
         </div>
     </div>
@@ -74,9 +64,9 @@
 
 
 {{define "Level"}}
-<form class="connexion" action="/level" method="post">
-    <input class="button-connect" type="submit" name="action" value="Easy">
-    <input class="button-connect" type="submit" name="action" value="Medium ">
-    <input class="button-connect" type="submit" name="action" value="Hard">
+<form action="/level" method="post">
+    <input type="submit" name="action" value="Easy">
+    <input type="submit" name="action" value="Medium">
+    <input type="submit" name="action" value="Hard">
 </form>
 {{end}}
