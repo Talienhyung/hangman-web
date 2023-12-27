@@ -15,10 +15,13 @@ type Data struct {
 	Loose     int
 	Score     int
 	BestScore int
+	WinHard   int
+	WinMedium int
+	WinEasy   int
 }
 
 func (data *Data) UploadUserData(allData [][]string) {
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore)}
+	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore), strconv.Itoa(data.WinHard), strconv.Itoa(data.WinMedium), strconv.Itoa(data.WinEasy)}
 	allData = RemplaceData(userData, allData)
 	file, err := os.Create("./BDD/data.csv")
 	if err != nil {
@@ -75,11 +78,7 @@ func (data *Data) SetNewUserData(email, password, username string, allData [][]s
 	data.Email = email
 	data.Password = password
 	data.Username = username
-	data.Loose = 0
-	data.Win = 0
-	data.Score = 0
-	data.BestScore = 0
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore)}
+	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore), strconv.Itoa(data.WinHard), strconv.Itoa(data.WinMedium), strconv.Itoa(data.WinEasy)}
 	allData = append(allData, userData)
 	return allData
 }
@@ -100,24 +99,16 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 			tab = i
 		}
 	}
-	var err error
+
 	userData.Username = tab[0]
 	userData.Email = tab[1]
 	userData.Password = tab[2]
-	userData.Loose, err = strconv.Atoi(tab[3])
-	if err != nil {
-		log.Fatal(err)
-	}
-	userData.Win, err = strconv.Atoi(tab[4])
-	if err != nil {
-		log.Fatal(err)
-	}
-	userData.Score, err = strconv.Atoi(tab[5])
-	if err != nil {
-		log.Fatal(err)
-	}
-	userData.BestScore, err = strconv.Atoi(tab[6])
-	if err != nil {
-		log.Fatal(err)
-	}
+	userData.Loose, _ = strconv.Atoi(tab[3])
+	userData.Win, _ = strconv.Atoi(tab[4])
+	userData.Score, _ = strconv.Atoi(tab[5])
+	userData.BestScore, _ = strconv.Atoi(tab[6])
+	userData.WinHard, _ = strconv.Atoi(tab[7])
+	userData.WinMedium, _ = strconv.Atoi(tab[8])
+	userData.WinEasy, _ = strconv.Atoi(tab[9])
+
 }
