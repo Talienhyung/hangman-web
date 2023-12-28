@@ -4,14 +4,14 @@ import (
 	. "github.com/Talienhyung/hangman"
 )
 
-// Init initializes the Hangman game by setting up necessary data and printing the word to be guessed.
+// Init initializes the Hangman game by setting up necessary data and printing the word to be guessed
 func (myStruct *Structure) Init() {
 	var infos HangManData
 	infos.SetData()
 	myStruct.Hangman = &infos
 }
 
-// Reload reloads the game state based on the provided level and updates user data accordingly.
+// Reload reloads the game state based on the provided level and updates user data accordingly
 func (info *Structure) Reload(level string) {
 	info.Hangman.SetData()
 

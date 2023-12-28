@@ -2,6 +2,7 @@ package hangmanweb
 
 import . "github.com/Talienhyung/hangman"
 
+// Main structure that groups together all the structures and variables required for the hangman web to function properly
 type Structure struct {
 	Hangman *HangManData
 	Data    *Data
@@ -9,6 +10,7 @@ type Structure struct {
 	Level   string
 }
 
+// Structure that stores all user data that will be stored in the database
 type Data struct {
 	Username  string
 	Email     string

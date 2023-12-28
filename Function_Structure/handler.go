@@ -126,7 +126,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-// Home handles HTTP requests for the home page and renders the appropriate HTML templates.
+// Home handles HTTP requests for the home page and renders the appropriate HTML templates
 func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
 	template, err := template.ParseFiles(
 		"./pages/index.html",
