@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"strconv"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 // UploadUserData uploads user data to a CSV file
@@ -43,7 +45,7 @@ func (data *Data) UploadUserData(allData [][]string) {
 // It returns true if there is a match, otherwise false
 func Log(email, password string, data [][]string) bool {
 	for _, i := range data {
-		if i[1] == email && i[2] == password {
+		if i[1] == email && checkPasswordHash(password, i[2]) {
 			return true
 		}
 	}
@@ -83,7 +85,7 @@ func RemplaceData(userData []string, data [][]string) [][]string {
 func (data *Data) SetNewUserData(email, password, username string, allData [][]string) [][]string {
 	// Update Data struct with new user information
 	data.Email = email
-	data.Password = password
+	data.Password = hashPassword(password)
 	data.Username = username
 
 	// Convert user data to a string slice
@@ -134,4 +136,17 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 	userData.WinHard, _ = strconv.Atoi(tab[7])
 	userData.WinMedium, _ = strconv.Atoi(tab[8])
 	userData.WinEasy, _ = strconv.Atoi(tab[9])
+}
+
+func hashPassword(password string) string {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(bytes)
+}
+
+func checkPasswordHash(password, passwordHash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(password))
+	return err == nil
 }
