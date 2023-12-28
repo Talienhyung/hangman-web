@@ -31,7 +31,7 @@
         </div>
         {{template "hangman" .}}
         <div class="item letter">
-            {{if or (eq .Status "USED") (eq .Status "")}}
+            {{if or (eq .Status "USED") (eq .Status "") (eq .Status "FORBIDDEN")}}
             <form action="/hangman" method="post">
                 <input type="text" id="input" name="input" required>
                 <input type="submit" value="submit">
@@ -39,6 +39,9 @@
             {{end}}
             {{if eq .Status "USED"}}
             <p class="item letter">Already guessed</p>
+            {{end}}
+            {{if eq .Status "FORBIDDEN"}}
+            <p class="item letter">Invalid shortcuts in the web version</p>
             {{end}}
             {{if eq .Status "WIN"}}
             <p class="item letter">You win !!!</p>

@@ -22,7 +22,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	// Check if the letter has been used before
 	if info.Hangman.UsedVerif(letter) {
 		info.Status = "USED"
-	} else {
+	} else if letter != "STOP" && letter != "QUIT" { // The main mecanic function shuts down the game in the presence of these words, which is not necessary for this game version
 		// Check the main game mechanics for the input letter
 		if info.Hangman.MainMecanics(letter) {
 			info.Status = "WIN"
@@ -36,6 +36,8 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		} else {
 			info.Status = ""
 		}
+	} else {
+		info.Status = "FORBIDDEN"
 	}
 
 	// Redirect back to the main page
