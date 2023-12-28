@@ -138,6 +138,7 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 	userData.WinEasy, _ = strconv.Atoi(tab[9])
 }
 
+// hashPassword generates a bcrypt hash for the provided password
 func hashPassword(password string) string {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -146,6 +147,8 @@ func hashPassword(password string) string {
 	return string(bytes)
 }
 
+// checkPasswordHash compares a password with its corresponding bcrypt hash
+// It returns true if the password matches the hash, and false otherwise
 func checkPasswordHash(password, passwordHash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(password))
 	return err == nil
