@@ -7,24 +7,40 @@ import (
 	"strconv"
 )
 
+// UploadUserData uploads user data to a CSV file
+// It takes a 2D slice 'allData' and replaces or appends the user's data to it
 func (data *Data) UploadUserData(allData [][]string) {
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore), strconv.Itoa(data.WinHard), strconv.Itoa(data.WinMedium), strconv.Itoa(data.WinEasy)}
+	userData := []string{data.Username,
+		data.Email,
+		data.Password,
+		strconv.Itoa(data.Win),
+		strconv.Itoa(data.Loose),
+		strconv.Itoa(data.Score),
+		strconv.Itoa(data.BestScore),
+		strconv.Itoa(data.WinHard),
+		strconv.Itoa(data.WinMedium),
+		strconv.Itoa(data.WinEasy)}
+
+	// Replace or append user data in the 2D slice
 	allData = RemplaceData(userData, allData)
+
+	// Create or open the CSV file
 	file, err := os.Create("./BDD/data.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 
-	// initialize csv writer
+	// Initialize csv writer
 	writer := csv.NewWriter(file)
-
 	defer writer.Flush()
 
-	// write all rows at once
+	// Write all rows to the CSV file
 	writer.WriteAll(allData)
 }
 
+// Log checks if the given email and password match any user in the data
+// It returns true if there is a match, otherwise false
 func Log(email, password string, data [][]string) bool {
 	for _, i := range data {
 		if i[1] == email && i[2] == password {
@@ -34,16 +50,16 @@ func Log(email, password string, data [][]string) bool {
 	return false
 }
 
+// ReadAllData reads all data from the CSV file and returns it as a 2D slice
 func ReadAllData() [][]string {
+	// Open the CSV file
 	f, err := os.Open("./BDD/data.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// close the file at the end of the program
 	defer f.Close()
 
-	// read csv values using csv.Reader
+	// Read CSV values using csv.Reader
 	csvReader := csv.NewReader(f)
 	data, err := csvReader.ReadAll()
 	if err != nil {
@@ -52,6 +68,7 @@ func ReadAllData() [][]string {
 	return data
 }
 
+// RemplaceData replaces the user data in the 2D slice with the provided user data
 func RemplaceData(userData []string, data [][]string) [][]string {
 	for user, i := range data {
 		if i[1] == userData[1] {
@@ -61,15 +78,32 @@ func RemplaceData(userData []string, data [][]string) [][]string {
 	return data
 }
 
+// SetNewUserData sets new user data for the provided email, password, and username
+// It updates the Data struct and appends the new user data to the existing 2D slice
 func (data *Data) SetNewUserData(email, password, username string, allData [][]string) [][]string {
+	// Update Data struct with new user information
 	data.Email = email
 	data.Password = password
 	data.Username = username
-	userData := []string{data.Username, data.Email, data.Password, strconv.Itoa(data.Win), strconv.Itoa(data.Loose), strconv.Itoa(data.Score), strconv.Itoa(data.BestScore), strconv.Itoa(data.WinHard), strconv.Itoa(data.WinMedium), strconv.Itoa(data.WinEasy)}
+
+	// Convert user data to a string slice
+	userData := []string{data.Username,
+		data.Email, data.Password,
+		strconv.Itoa(data.Win),
+		strconv.Itoa(data.Loose),
+		strconv.Itoa(data.Score),
+		strconv.Itoa(data.BestScore),
+		strconv.Itoa(data.WinHard),
+		strconv.Itoa(data.WinMedium),
+		strconv.Itoa(data.WinEasy)}
+
+	// Append the new user data to the existing 2D slice
 	allData = append(allData, userData)
 	return allData
 }
 
+// EmailAlreadyUsed checks if the given email is already used in the data
+// It returns true if the email is already used, otherwise false
 func EmailAlreadyUsed(email string, data [][]string) bool {
 	for _, i := range data {
 		if i[1] == email {
@@ -79,6 +113,8 @@ func EmailAlreadyUsed(email string, data [][]string) bool {
 	return false
 }
 
+// SetUserData sets the user data in the Data struct based on the provided email
+// It retrieves the user data from the 2D slice and updates the Data struct accordingly
 func (userData *Data) SetUserData(email string, data [][]string) {
 	var tab []string
 	for _, i := range data {
@@ -87,6 +123,7 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 		}
 	}
 
+	// Update Data struct with user information
 	userData.Username = tab[0]
 	userData.Email = tab[1]
 	userData.Password = tab[2]
@@ -97,5 +134,4 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 	userData.WinHard, _ = strconv.Atoi(tab[7])
 	userData.WinMedium, _ = strconv.Atoi(tab[8])
 	userData.WinEasy, _ = strconv.Atoi(tab[9])
-
 }
