@@ -1,0 +1,8 @@
+{{define "board"}}
+<p>one</p>
+{{.Board.First}}
+<form action="/board" method="post">
+  <input type="submit" name="action" value="+">
+  <input type="submit" name="action" value="-">
+</form>
+{{end}}
