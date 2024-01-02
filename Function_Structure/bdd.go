@@ -1,12 +1,12 @@
 package hangmanweb
 
 import (
+	"crypto/sha256"
 	"encoding/csv"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
-
-	"golang.org/x/crypto/bcrypt"
 )
 
 // UploadUserData uploads user data to a CSV file
@@ -140,16 +140,12 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 
 // hashPassword generates a bcrypt hash for the provided password
 func hashPassword(password string) string {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return string(bytes)
+	hash := sha256.Sum256([]byte(password))
+	return fmt.Sprintf("%x", hash)
 }
 
 // checkPasswordHash compares a password with its corresponding bcrypt hash
 // It returns true if the password matches the hash, and false otherwise
 func checkPasswordHash(password, passwordHash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(password))
-	return err == nil
+	return hashPassword(password) == passwordHash
 }
