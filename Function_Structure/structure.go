@@ -6,6 +6,7 @@ import . "github.com/Talienhyung/hangman"
 type Structure struct {
 	Hangman *HangManData
 	Data    *Data
+	Board   *ScoreBoard
 	Status  string
 	Level   string
 }
@@ -25,9 +26,9 @@ type Data struct {
 }
 
 type ScoreBoard struct {
-	id       int
-	first    string
-	second   string
-	third    string
-	sentence string
+	Id       int
+	First    string
+	Second   string
+	Third    string
+	Sentence string
 }
