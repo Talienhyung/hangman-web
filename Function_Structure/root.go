@@ -8,7 +8,9 @@ import (
 func Root() {
 	var myStruct Structure
 	var userData Data
+	var board ScoreBoard
 	myStruct.Data = &userData
+	myStruct.Board = &board
 
 	// Initialize the game
 	myStruct.Init()
@@ -25,8 +27,10 @@ func Root() {
 	http.HandleFunc("/level", func(w http.ResponseWriter, r *http.Request) {
 		levelHandler(w, r, &myStruct)
 	})
-
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		connexionHandler(w, r, &myStruct)
+	})
+	http.HandleFunc("/header", func(w http.ResponseWriter, r *http.Request) {
+		headerHandler(w, r, &myStruct)
 	})
 }
