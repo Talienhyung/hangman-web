@@ -23,3 +23,11 @@ type Data struct {
 	WinMedium int
 	WinEasy   int
 }
+
+type ScoreBoard struct {
+	id       int
+	first    string
+	second   string
+	third    string
+	sentence string
+}
