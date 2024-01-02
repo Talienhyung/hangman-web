@@ -1,10 +1,11 @@
 {{define "header"}}
 
 <header>
-    <div id="btnid-2"><a class="btn btn-2">Play</a></div>
-    <div id="btnid"><a class="btn btn-2">Scoreboard</a></div>
-    <div id="btnid"><a class="btn btn-2">Profil</a></div>
+    <form action="/header" method="post">
+    <div id="btnid-2"><input class="btn btn-2" type="submit" name="action" value="Play"></div>
+    <div id="btnid"><input class="btn btn-2" type="submit" name="action" value="Profil"></div>
+    <div id="btnid"><input class="btn btn-2" type="submit" name="action" value="ScoreBoard"></div>
     <div id="btnid-2"><a class="btn btn-2 titre">Hangman</a></div>
+    </form>
 </header>
-
 {{end}}
