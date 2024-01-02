@@ -29,6 +29,8 @@
 {{if eq .Status "SIGNIN-ERROR"}}
 <p>Email already used</p>
 {{end}}
+{{else if eq .Status "SCOREBOARD"}}
+{{template "board" .}}
 {{else}}
 {{template "play" .}}
 {{end}}
