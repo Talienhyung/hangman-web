@@ -15,7 +15,7 @@ func (user Data) MakeBoard(tab int, allData [][]string) []string {
 
 	board := []string{allData[0][0] + "-" + allData[0][tab], allData[1][0] + "-" + allData[1][tab], allData[2][0] + "-" + allData[2][tab]}
 	var sentence string
-	for i := 0; i <= 3; i++ {
+	for i := 0; i < len(allData); i++ {
 		if allData[i][1] == user.Email {
 			sentence = "You are on the podium!"
 			break
@@ -41,21 +41,21 @@ func (Sboard *ScoreBoard) SetScoreBoard(board []string) {
 	if len(board) != 4 {
 		log.Fatal("Error when generated board")
 	}
-	Sboard.first = board[0]
-	Sboard.second = board[1]
-	Sboard.third = board[2]
-	Sboard.sentence = board[3]
+	Sboard.First = board[0]
+	Sboard.Second = board[1]
+	Sboard.Third = board[2]
+	Sboard.Sentence = board[3]
 }
 
 func (Sboard *ScoreBoard) ChangeBoardId(action string) {
-	if action == "-" && Sboard.id == 0 {
-		Sboard.id = 6
-	} else if action == "+" && Sboard.id == 6 {
-		Sboard.id = 0
+	if action == "-" && Sboard.Id == 0 {
+		Sboard.Id = 6
+	} else if action == "+" && Sboard.Id == 6 {
+		Sboard.Id = 0
 	} else if action == "+" {
-		Sboard.id++
+		Sboard.Id++
 	} else if action == "-" {
-		Sboard.id--
+		Sboard.Id--
 	}
 }
 
