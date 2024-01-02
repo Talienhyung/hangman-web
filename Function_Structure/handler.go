@@ -13,7 +13,7 @@ import (
 func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	// Check if the request method is not POST
 	if r.Method != http.MethodPost {
-		info.Init()
+		http.NotFound(w, r)
 	}
 
 	// Get the letter input from the form
@@ -46,6 +46,9 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 // levelHandler handles HTTP requests related to changing the game level
 func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
 	action := r.FormValue("action")
 	info.Reload(action)
 
@@ -71,6 +74,9 @@ func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 // connexionHandler handles HTTP requests related to user connection (signin and login)
 func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
 	data := ReadAllData()
 	action := r.FormValue("action")
 
@@ -137,9 +143,37 @@ func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
 		"./templates/footer.html",
 		"./templates/hangman.html",
 		"./templates/header.html",
+		"./templates/board.html",
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
 	template.Execute(w, infos)
+}
+
+func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
+	action := r.FormValue("action")
+	switch action {
+	case "ScoreBoard":
+		infos.Status = "SCOREBOARD"
+		infos.Board.SetScoreBoard(infos.Data.MakeBoard(3, ReadAllData()))
+		fmt.Println(infos.Board)
+	case "Play":
+		infos.Status = ""
+	case "Profil":
+		infos.Status = "PROFIL"
+	}
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
