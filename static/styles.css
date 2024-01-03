@@ -6,7 +6,7 @@ body {
 main {
     padding: 20px;
 }
-
+@media screen and (min-width: 601px){
 footer {
     background-color: var(--ash-gray);
     font-family: var(--font-kodchasan);
@@ -16,7 +16,7 @@ footer {
     position: fixed;
     width: 100%;
 }
-
+}
 
 form.form-example {
   display: table;
@@ -190,6 +190,7 @@ form{
     justify-content: space-around;
     display: flex;
     overflow: hidden;
+    order: 2;
   }
   
   .container-center{
@@ -267,4 +268,97 @@ form{
 
 .dead {
   stroke: red;
+}
+
+
+/* =========================Board Css===============================*/
+
+.podium{
+  margin-top: 1em;
+  width: 100%;
+  max-width: 100%;
+  height: 520px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.change{
+  height:100% ;
+  flex-direction: column;
+  justify-content: space-around;
+  display: flex;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 600px){
+  .order{
+    order: 2;
+  }
+  .phone-mode{
+    flex-wrap: wrap;
+  }
+}
+
+.first{
+  height: 80%;
+  width: 33%;
+  background-color: var(--ash-gray);
+}
+.second{
+  height: 60%;
+  width: 33%;
+  background-color: var(--ash-gray);
+}
+.third{
+  height: 40%;
+  width: 33%;
+  background-color: var(--ash-gray);
+}
+.top{
+  background-color: var(--cream);
+  height: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  font-size: 1em;
+}
+
+.boardFont{
+  color: var(--english-violet);
+  font-size: 3vmax;
+  text-transform: uppercase;
+}
+
+.bottom{
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+
+.calque img {
+  max-width: 100%;
+  height: auto;
+  width: 20%;
+  margin-top: 40vh;
+  margin-left: 80vw;
+}
+
+.parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.plan1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.plan2 {
+  z-index: 1;
+  width: 100%;
 }
