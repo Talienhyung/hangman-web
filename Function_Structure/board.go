@@ -13,9 +13,9 @@ func (user Data) MakeBoard(tab int, allData [][]string) []string {
 		return valI > valJ
 	})
 
-	board := []string{allData[0][0] + "-" + allData[0][tab], allData[1][0] + "-" + allData[1][tab], allData[2][0] + "-" + allData[2][tab]}
+	board := []string{allData[0][0] + " -" + allData[0][tab], allData[1][0] + " -" + allData[1][tab], allData[2][0] + " -" + allData[2][tab]}
 	var sentence string
-	for i := 0; i < len(allData); i++ {
+	for i := 0; i < 3; i++ {
 		if allData[i][1] == user.Email {
 			sentence = "You are on the podium!"
 			break
@@ -48,21 +48,21 @@ func (Sboard *ScoreBoard) SetScoreBoard(board []string) {
 }
 
 func (Sboard *ScoreBoard) ChangeBoardId(action string) {
-	if action == "-" && Sboard.Id == 0 {
+	if action == ">" && Sboard.Id == 0 {
 		Sboard.Id = 6
-	} else if action == "+" && Sboard.Id == 6 {
+	} else if action == "<" && Sboard.Id == 6 {
 		Sboard.Id = 0
-	} else if action == "+" {
+	} else if action == "<" {
 		Sboard.Id++
-	} else if action == "-" {
+	} else if action == ">" {
 		Sboard.Id--
 	}
 }
 
 func (user Data) MakeRatioBoard(allData [][]string) []string {
 	var newData [][]string
-	for _, i := range allData {
-		newData = append(newData, []string{user.Username, user.Email, calculRatio(i[3], i[4])})
+	for index, idem := range allData {
+		newData = append(newData, []string{allData[index][0], allData[index][1], calculRatio(idem[3], idem[4])})
 	}
 	return user.MakeBoard(2, newData)
 }
