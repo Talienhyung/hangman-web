@@ -174,6 +174,14 @@ func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
 	}
+	action := r.FormValue("action")
+	infos.Board.ChangeBoardId(action)
+	allData := ReadAllData()
+	if infos.Board.Id == 2 {
+		infos.Board.SetScoreBoard(infos.Data.MakeRatioBoard(allData))
+	} else {
+		infos.Board.SetScoreBoard(infos.Data.MakeBoard(infos.Board.Id+3, allData))
+	}
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
