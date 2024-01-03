@@ -33,4 +33,8 @@ func Root() {
 	http.HandleFunc("/header", func(w http.ResponseWriter, r *http.Request) {
 		headerHandler(w, r, &myStruct)
 	})
+	http.HandleFunc("/board", func(w http.ResponseWriter, r *http.Request) {
+		boardHandler(w, r, &myStruct)
+	})
+
 }
