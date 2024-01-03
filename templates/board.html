@@ -1,8 +1,63 @@
 {{define "board"}}
-<p>one</p>
-{{.Board.First}}
-<form action="/board" method="post">
-  <input type="submit" name="action" value="+">
-  <input type="submit" name="action" value="-">
-</form>
+<div class="parent">
+<div class="calque plan2">
+  <img src="../static/img/Perso.png">
+</div>
+<div class="calque plan1">
+<div class="main-container phone-mode">
+  <div class="change">
+    <form action="/board" method="post">
+      <input type="submit" name="action" value="<">
+    </form>
+  </div>
+  <div class="container-center order">
+    <div class="item attempts">
+      {{if eq .Board.Id 0}}
+        Win
+      {{else if eq .Board.Id 1}}
+        Loose
+      {{else if eq .Board.Id 2}}
+        Ratio
+      {{else if eq .Board.Id 3}}
+        BestScore
+      {{else if eq .Board.Id 4}}
+        WinHard
+      {{else if eq .Board.Id 5}}
+        WinMedium
+      {{else if eq .Board.Id 6}}
+        WinEasy
+      {{end}}
+    </div>
+    <div class="podium">
+      <div class="second bottom">
+        <div class="top">
+          <div class="boardFont">{{.Board.Second}}</div>
+        </div>
+        <div class="item attempts">2</div>
+      </div>
+      <div class="first bottom">
+        <div class="top">
+          <div class="boardFont">{{.Board.First}}</div>
+        </div>
+        <div class="item attempts">1</div>
+      </div>
+      <div class="third bottom">
+        <div class="top">
+          <div class="boardFont">{{.Board.Third}}</div>
+        </div>
+        <div class="item attempts">3</div>
+      </div>
+      
+    </div>
+    <div class="item letter">{{.Board.Sentence}}</div>
+  </div>
+  <div class="change">
+    <form action="/board" method="post">
+      <input type="submit" name="action" value=">">
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
 {{end}}
