@@ -1,0 +1,11 @@
+:root {
+    /* fonts */
+    --font-kodchasan: Kodchasan;
+  
+    /* Colors */
+    --background : #fff;
+    --writing : #2c2a4a;
+    --center-hover : #c5d8e7;
+    --border-button : #5b7fbf;
+    --footer-header : #6088a3;
+}
