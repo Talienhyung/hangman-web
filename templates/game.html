@@ -24,9 +24,14 @@
         </div>
         <div class="item letter"><div>{{template "Level"}}</div></div>
         {{else}}
+        
         <div class="item attempts">
+            {{if eq .Status "LOOSE"}}
+            {{.Hangman.ToFind}}
+            {{else}}
             {{range .Hangman.Word}}
                 {{printf "%c" .}}
+            {{end}}
             {{end}}
         </div>
         {{template "hangman" .}}
