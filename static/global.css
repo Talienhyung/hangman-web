@@ -9,10 +9,9 @@ body {
     --font-kodchasan: Kodchasan;
   
     /* Colors */
-    --english-violet: #413c58;
-    --darkseagreen: #bfd7b5;
-    --cream: #e7efc5;
-    --color-black: #000;
-    --ash-gray: #a3c4bc;
-    --tea-green :#BFD7B5;
+    --background : #fff;
+    --writing : #413c58;
+    --center-hover : #e7efc5;
+    --border-button : #BFD7B5;
+    --footer-header : #a3c4bc;
   }
