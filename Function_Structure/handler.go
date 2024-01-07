@@ -191,3 +191,15 @@ func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func themeHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
+	action := r.FormValue("dropdown")
+	if action != "" {
+		infos.Theme = action
+	}
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
