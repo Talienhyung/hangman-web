@@ -82,8 +82,8 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 	// Handle different cases based on the current status
 	switch info.Status {
-	case "CONNEXION":
-		// If the status is CONNEXION, determine the next status based on the action
+	case "CONNEXION", "PROFIL":
+		// If the status is CONNEXION or PROFIL, determine the next status based on the action
 		switch action {
 		case "Signin":
 			info.Status = "SIGNIN"
