@@ -11,7 +11,7 @@ func Root() {
 	var board ScoreBoard
 	myStruct.Data = &userData
 	myStruct.Board = &board
-
+	myStruct.Theme = "brown"
 	// Initialize the game
 	myStruct.Init()
 
@@ -35,6 +35,9 @@ func Root() {
 	})
 	http.HandleFunc("/board", func(w http.ResponseWriter, r *http.Request) {
 		boardHandler(w, r, &myStruct)
+	})
+	http.HandleFunc("/theme", func(w http.ResponseWriter, r *http.Request) {
+		themeHandler(w, r, &myStruct)
 	})
 
 }
