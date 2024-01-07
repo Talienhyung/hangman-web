@@ -4,14 +4,4 @@ body {
     font-family: var(--font-kodchasan);
   }
   
-  :root {
-    /* fonts */
-    --font-kodchasan: Kodchasan;
-  
-    /* Colors */
-    --background : #fff;
-    --writing : #413c58;
-    --center-hover : #e7efc5;
-    --border-button : #BFD7B5;
-    --footer-header : #a3c4bc;
-  }
+
