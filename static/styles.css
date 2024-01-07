@@ -1,5 +1,5 @@
 body {
-    background-color: #fff;
+    background-color: var(--background);
     font-family: var(--font-kodchasan);
 }
 
@@ -8,9 +8,9 @@ main {
 }
 @media screen and (min-width: 601px){
 footer {
-    background-color: var(--ash-gray);
+    background-color: var(--footer-header);
     font-family: var(--font-kodchasan);
-    color: black;
+    color: var(--writing);
     bottom: 0;
     text-align: center;
     position: fixed;
@@ -44,72 +44,27 @@ label {
 
 /* =====================================================================header */
 
-#btnid{
-  float: right;
-  margin-right: 20px;
-}
-
-#btnid-2{
-  float: left;
-  margin-left: 20px;
-}
-
-header{
-    width: 100%;
-    height: 9vh;
-    color:black;
-    background: var(--ash-gray);
-    font-size: 1em;
-    line-height: 1em;
-}
-
-
-.btn-2:after,
-.btn-2:before {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  border: 1px solid var(--ash-gray);
-  bottom: 0px;
-  content: " ";
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  transition: all 280ms ease-in-out;
-  width: 0;
-}
-
-.btn-2:hover:after,
-.btn-2:hover:before {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  border-color: var(--english-violet);
-  
-  transition: width 350ms ease-in-out;
-  width: 70%;
-}
-
-.btn-2:hover:before {
-  bottom: auto;
-  top: 0;
-  width: 70%; 
-  color: #ece17e;
-}
-
-
-.btn {
-  color: black;
-  cursor: pointer;
-  font-size: 2vw;
-  font-weight: 400;
-  line-height: 45px;
-  margin: 0 0 2em;
-  max-width: 100%;
-  position: relative;
-  text-decoration: none;
+header {
   width: 100%;
-  font-family: var(--font-kodchasan);
+  height: 9vh;
+  color: var(--writing);
+  background: var(--footer-header);
+  font-size: 1em;
+  line-height: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
+.header-left{
+  display: flex;
+}
+
+.header-right{
+  display: flex;
+}
 
 .titre {
   text-transform: uppercase;
@@ -118,13 +73,13 @@ header{
 /* ================================================================ fin bouton entete */
 
 .letter{
-  color: var(--english-violet);
+  color: var(--writing);
   font-size: 22px;
   text-transform: uppercase;
 }
 
 .attempts{
-  color: var(--english-violet);
+  color: var(--writing);
   font-size: 60px;
 }
 
@@ -155,9 +110,9 @@ img {
 
 input[type="submit"] {
   border-radius: 5px; 
-  border-color: var(--tea-green);
-  background-color: var(--tea-green) ; 
-  color: var(--english-violet); 
+  border-color: var(--border-button);
+  background-color: var(--border-button) ; 
+  color: var(--writing); 
   padding: 10px 20px; 
   cursor: pointer;
   font-family: var(--font-kodchasan);
@@ -167,7 +122,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: var(--cream); 
+  background-color: var(--center-hover); 
 }
 
 input[type="text"]{
@@ -183,7 +138,7 @@ form{
 @media screen and (max-width: 600px){
   .container-border{
     border-radius: 36px;
-    background: var(--tea-green);
+    background: var(--border-button);
     width: 100%;
     height:7% ;
     flex-direction: row;
@@ -195,7 +150,7 @@ form{
   
   .container-center{
     border-radius: 52px;
-    background: var(--cream);
+    background: var(--center-hover);
     width: 100%;
     height:80% ;
     flex-direction: column;
@@ -218,7 +173,7 @@ form{
 @media screen and (min-width: 601px){
   .container-border{
     border-radius: 36px;
-    background: var(--tea-green);
+    background: var(--border-button);
     width: 18%;
     height:100% ;
     flex-direction: column;
@@ -229,7 +184,7 @@ form{
   
   .container-center{
     border-radius: 52px;
-    background: var(--cream);
+    background: var(--center-hover);
     width: 51%;
     height:100% ;
     flex-direction: column;
@@ -254,7 +209,7 @@ form{
 
 .hangman {
 	fill: none;
-	stroke: var(--cream);
+	stroke: var(--center-hover);
 	stroke-width: 2;
   transition: 0.30s;
 	stroke-linecap: round;
@@ -262,7 +217,7 @@ form{
 }
 
 .display {
-	stroke: var(--english-violet);
+	stroke: var(--writing);
 	display: grid;
 }
 
@@ -304,20 +259,20 @@ form{
 .first{
   height: 80%;
   width: 33%;
-  background-color: var(--ash-gray);
+  background-color: var(--footer-header);
 }
 .second{
   height: 60%;
   width: 33%;
-  background-color: var(--ash-gray);
+  background-color: var(--footer-header);
 }
 .third{
   height: 40%;
   width: 33%;
-  background-color: var(--ash-gray);
+  background-color: var(--footer-header);
 }
 .top{
-  background-color: var(--cream);
+  background-color: var(--center-hover);
   height: 100px;
   display: flex;
   justify-content: space-evenly;
@@ -326,7 +281,7 @@ form{
 }
 
 .boardFont{
-  color: var(--english-violet);
+  color: var(--writing);
   font-size: 3vmax;
   text-transform: uppercase;
 }
