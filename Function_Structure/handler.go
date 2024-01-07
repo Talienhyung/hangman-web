@@ -162,7 +162,13 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 		infos.Board.SetScoreBoard(infos.Data.MakeBoard(3, ReadAllData()))
 		fmt.Println(infos.Board)
 	case "Play":
-		infos.Status = ""
+		if string(infos.Hangman.Word) == infos.Hangman.ToFind {
+			infos.Status = "WIN"
+		} else if infos.Hangman.EndGame() {
+			infos.Status = "LOOSE"
+		} else {
+			infos.Status = ""
+		}
 	case "Profil":
 		infos.Status = "PROFIL"
 	}
