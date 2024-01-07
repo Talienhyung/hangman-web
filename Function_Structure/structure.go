@@ -9,6 +9,7 @@ type Structure struct {
 	Board   *ScoreBoard
 	Status  string
 	Level   string
+	Theme   string
 }
 
 // Structure that stores all user data that will be stored in the database
