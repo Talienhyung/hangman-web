@@ -11,10 +11,8 @@ func (myStruct *Structure) Init() {
 	myStruct.Hangman = &infos
 }
 
-// Reload reloads the game state based on the provided level and updates user data accordingly
-func (info *Structure) Reload(level string) {
-	info.Hangman.SetData()
-
+// Save updates user data accordingly
+func (info *Structure) Save() {
 	// Check if the player won the previous game
 	if info.Status == "WIN" {
 		// Update score and win statistics based on the game level
@@ -45,6 +43,11 @@ func (info *Structure) Reload(level string) {
 
 	// Upload updated user data
 	info.Data.UploadUserData(ReadAllData())
+}
+
+// Reload reloads the game state based on the provided level
+func (info *Structure) Reload() {
+	info.Hangman.SetData()
 
 	// Reset game status
 	info.Status = ""
