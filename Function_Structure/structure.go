@@ -26,6 +26,7 @@ type Data struct {
 	WinEasy   int
 }
 
+// Structure for the board
 type ScoreBoard struct {
 	Id       int
 	First    string
