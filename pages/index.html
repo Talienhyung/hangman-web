@@ -25,9 +25,9 @@
   {{if eq .Status "LOGIN-ERROR"}}
     <p>Wrong email or passw</p>
   {{end}}
-{{else if or (eq .Status "SIGNIN") (eq .Status "SIGNIN-ERROR")}}
-  {{template "signin"}}
-  {{if eq .Status "SIGNIN-ERROR"}}
+{{else if or (eq .Status "SIGNUP") (eq .Status "SIGNUP-ERROR")}}
+  {{template "signup"}}
+  {{if eq .Status "SIGNUP-ERROR"}}
     <p>Email already used</p>
   {{end}}
 {{else if eq .Status "SCOREBOARD"}}
