@@ -11,5 +11,6 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static", fs))
 	fss := http.FileServer(http.Dir("Ressources/"))
 	http.Handle("/Ressources/", http.StripPrefix("/Ressources", fss))
-	http.ListenAndServe(":8080", nil)
+	//http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
 }
