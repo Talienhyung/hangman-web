@@ -10,7 +10,7 @@ import (
 )
 
 // Home handles HTTP requests for the home page and renders the appropriate HTML templates
-func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
+func Home(w http.ResponseWriter, r *http.Request, infos WebData) {
 	template, err := template.ParseFiles(
 		"./pages/index.html",
 		"./templates/game.html",
@@ -28,7 +28,7 @@ func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
 }
 
 // hangmanHandler handles HTTP requests related to the Hangman game
-func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+func hangmanHandler(w http.ResponseWriter, r *http.Request, info *WebData) {
 	// Check if the request method is not POST
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -65,7 +65,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 }
 
 // levelHandler handles HTTP requests related to changing the game level
-func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+func levelHandler(w http.ResponseWriter, r *http.Request, info *WebData) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
 	}
@@ -93,7 +93,7 @@ func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 }
 
 // connexionHandler handles HTTP requests related to user connection (Signup and login)
-func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+func connexionHandler(w http.ResponseWriter, r *http.Request, info *WebData) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
 	}
@@ -155,7 +155,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 }
 
 // headerHandler handles the POST request for various actions related to the header
-func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+func headerHandler(w http.ResponseWriter, r *http.Request, infos *WebData) {
 	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -190,7 +190,7 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 }
 
 // boardHandler handles the POST request for changing the game board
-func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+func boardHandler(w http.ResponseWriter, r *http.Request, infos *WebData) {
 	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -217,7 +217,7 @@ func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 }
 
 // themeHandler handles the POST request for changing the theme
-func themeHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+func themeHandler(w http.ResponseWriter, r *http.Request, infos *WebData) {
 	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -227,7 +227,7 @@ func themeHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 	// Get the selected theme
 	action := r.FormValue("dropdown")
 
-	// Update the theme in the Structure
+	// Update the theme in the WebData
 	if action != "" {
 		infos.Theme = action
 	}

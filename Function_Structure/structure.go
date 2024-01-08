@@ -3,7 +3,7 @@ package hangmanweb
 import . "github.com/Talienhyung/hangman"
 
 // Main structure that groups together all the structures and variables required for the hangman web to function properly
-type Structure struct {
+type WebData struct {
 	Hangman *HangManData
 	Data    *Data
 	Board   *ScoreBoard

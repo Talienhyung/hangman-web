@@ -6,7 +6,7 @@ import (
 
 // Root initializes the game structure and sets up the handlers
 func Root() {
-	var myStruct Structure
+	var myStruct WebData
 	var userData Data
 	var board ScoreBoard
 	myStruct.Data = &userData
