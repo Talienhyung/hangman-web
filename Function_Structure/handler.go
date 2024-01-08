@@ -50,7 +50,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 			if string(info.Hangman.Word) == info.Hangman.ToFind {
 				info.Status = "WIN"
 			} else {
-				info.Status = "LOOSE"
+				info.Status = "LOSE"
 			}
 			info.Save()
 		} else {
@@ -176,7 +176,7 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 		if string(infos.Hangman.Word) == infos.Hangman.ToFind {
 			infos.Status = "WIN"
 		} else if infos.Hangman.EndGame() {
-			infos.Status = "LOOSE"
+			infos.Status = "LOSE"
 		} else {
 			infos.Status = ""
 		}

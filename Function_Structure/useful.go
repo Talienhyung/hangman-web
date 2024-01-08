@@ -35,9 +35,9 @@ func (info *Structure) Save() {
 		if info.Data.Score > info.Data.BestScore {
 			info.Data.BestScore = info.Data.Score
 		}
-	} else if info.Status == "LOOSE" {
-		// If the player lost, increment the loose count and reset the score
-		info.Data.Loose += 1
+	} else if info.Status == "LOSE" {
+		// If the player lost, increment the lose count and reset the score
+		info.Data.Lose += 1
 		info.Data.Score = 0
 	}
 

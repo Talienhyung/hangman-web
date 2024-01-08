@@ -16,7 +16,7 @@ func (data *Data) UploadUserData(allData [][]string) {
 		data.Email,
 		data.Password,
 		strconv.Itoa(data.Win),
-		strconv.Itoa(data.Loose),
+		strconv.Itoa(data.Lose),
 		strconv.Itoa(data.Score),
 		strconv.Itoa(data.BestScore),
 		strconv.Itoa(data.WinHard),
@@ -92,7 +92,7 @@ func (data *Data) SetNewUserData(email, password, username string, allData [][]s
 	userData := []string{data.Username,
 		data.Email, data.Password,
 		strconv.Itoa(data.Win),
-		strconv.Itoa(data.Loose),
+		strconv.Itoa(data.Lose),
 		strconv.Itoa(data.Score),
 		strconv.Itoa(data.BestScore),
 		strconv.Itoa(data.WinHard),
@@ -129,7 +129,7 @@ func (userData *Data) SetUserData(email string, data [][]string) {
 	userData.Username = tab[0]
 	userData.Email = tab[1]
 	userData.Password = tab[2]
-	userData.Loose, _ = strconv.Atoi(tab[3])
+	userData.Lose, _ = strconv.Atoi(tab[3])
 	userData.Win, _ = strconv.Atoi(tab[4])
 	userData.Score, _ = strconv.Atoi(tab[5])
 	userData.BestScore, _ = strconv.Atoi(tab[6])

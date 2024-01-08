@@ -26,7 +26,7 @@
         {{else}}
         
         <div class="item attempts">
-            {{if eq .Status "LOOSE"}}
+            {{if eq .Status "LOSE"}}
             {{.Hangman.ToFind}}
             {{else}}
             {{range .Hangman.Word}}
@@ -52,8 +52,8 @@
             <p class="item letter">You win !!!</p>
             <div>{{template "Level"}}</div>
             {{end}}
-            {{if eq .Status "LOOSE"}}
-            <p class="item letter">You loose !!!</p>
+            {{if eq .Status "LOSE"}}
+            <p class="item letter">You lose !!!</p>
             <div>{{template "Level"}}</div>
             {{end}}
         </div>

@@ -18,7 +18,7 @@ type Data struct {
 	Email     string
 	Password  string
 	Win       int
-	Loose     int
+	Lose      int
 	Score     int
 	BestScore int
 	WinHard   int

@@ -39,5 +39,4 @@ func Root() {
 	http.HandleFunc("/theme", func(w http.ResponseWriter, r *http.Request) {
 		themeHandler(w, r, &myStruct)
 	})
-
 }
