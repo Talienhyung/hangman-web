@@ -70,11 +70,12 @@ header {
   justify-content: space-evenly;
   flex-wrap: nowrap;
   flex-direction: row;
+  align-items: stretch;
 }
 
 .titre {
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 2em;
 }
 /* ================================================================ fin bouton entete */
 
