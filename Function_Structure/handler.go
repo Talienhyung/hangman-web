@@ -154,17 +154,25 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
+// headerHandler handles the POST request for various actions related to the header
 func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
+		return
 	}
+
 	action := r.FormValue("action")
+
+	// Perform different actions based on the specified action
 	switch action {
 	case "ScoreBoard":
+		// Set the status to "SCOREBOARD" and update the score board
 		infos.Status = "SCOREBOARD"
 		infos.Board.SetScoreBoard(infos.Data.MakeBoard(3, ReadAllData()))
 		fmt.Println(infos.Board)
 	case "Play":
+		// Check if the player has won, lost, or the game is still ongoing
 		if string(infos.Hangman.Word) == infos.Hangman.ToFind {
 			infos.Status = "WIN"
 		} else if infos.Hangman.EndGame() {
@@ -173,36 +181,57 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 			infos.Status = ""
 		}
 	case "Profil":
+		// Set the status to "PROFIL" for profile-related actions
 		infos.Status = "PROFIL"
 	}
-	// Redirect back to the main page
+
+	// Redirect back to the main page after processing the action.
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
+// boardHandler handles the POST request for changing the game board
 func boardHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
+		return
 	}
 	action := r.FormValue("action")
+
+	// Change the board id
 	infos.Board.ChangeBoardId(action)
+
 	allData := ReadAllData()
+
+	// Update the score board based on the selected board.
 	if infos.Board.Id == 2 {
+		// If the board identifier is 2, set the score board using MakeRatioBoard
 		infos.Board.SetScoreBoard(infos.Data.MakeRatioBoard(allData))
 	} else {
+		// Otherwise, set the score board using MakeBoard with an adjusted identifier
 		infos.Board.SetScoreBoard(infos.Data.MakeBoard(infos.Board.Id+3, allData))
 	}
-	// Redirect back to the main page
+
+	// Redirect back to the main page after changing the board.
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
+// themeHandler handles the POST request for changing the theme
 func themeHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
+	// Check if the request method is POST, otherwise return a 404 Not Found
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
+		return
 	}
+
+	// Get the selected theme
 	action := r.FormValue("dropdown")
+
+	// Update the theme in the Structure
 	if action != "" {
 		infos.Theme = action
 	}
-	// Redirect back to the main page
+
+	// Redirect back to the main page after theme change
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
