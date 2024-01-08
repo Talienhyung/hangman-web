@@ -43,8 +43,8 @@ And that's all there is to it! Now you can move on to the next step.
 ## Using the Hangman game
 
 - [Connexion Page](#connexion-page)
+- [Play](#play)
 - [Score Board](#score-board)
-- [Using the Hangman game](#using-the-hangman-game)
 - [Licence](#license)
 
 
@@ -55,8 +55,8 @@ Once you've started the game, you'll see an erface asking you to login or create
 
 #### 1. Signup
 
-![SignUp](./Ressources/ReadmeImg/Signup.png "Signup")
-If you press the signup button, you'll be asked to create an account with :
+
+If you press the signup button, ![SignUp](./Ressources/ReadmeImg/Signup.png "Signup") you'll be asked to create an account with :
 
 - An e-mail address
 - A username
@@ -66,8 +66,7 @@ Remember all this information, as it will be essential for reconnecting.
 
 #### 2. Login
 
-![Login](./Ressources/ReadmeImg/Login.png "Login")
-If you press the login button, you'll be able to log in! If you haven't already created an account, you can click on signup and create an account.
+If you press the login button, ![Login](./Ressources/ReadmeImg/Login.png "Login") you'll be able to log in! If you haven't already created an account, you can click on signup and create an account.
 
 To log in you'll need :
 
@@ -110,18 +109,17 @@ Harder words are on offer for this level! A word found will earn you three point
 #### 2. Score / BestScore
 
 ![Profile](./Ressources/ReadmeImg/Stat.png)
-
 On the right-hand side of the screen, you'll see a score and a bestscore! "Score" is your current score, which increases with the number of words you find, but decreases to 0 if you lose even once! So if your current score exceeds your Bestscore, it replaces it!
 
 #### 3. The Game
 
 Suggest letters to find the word using the input :
 
-![Submit](./Resources/ReadmeImg/Submit.png)
+![Submit](./Ressources/ReadmeImg/Submit.png)
 
 Here's an example of a game in progress 
 
-![Game](./Resources/ReadmeImg/Game.png)
+![Game](./Ressources/ReadmeImg/Game.png)
 
 Details of the different elements :
 
@@ -136,11 +134,11 @@ Details of the different elements :
 
 ### ScoreBoard
 To access the scoreboard, simply click on the ScoreBoard button at the top of the page.
-![Score](./Resources/ReadmeImg/Score.png "Score")
+![Score](./Ressources/ReadmeImg/Score.png "Score")
 
 Here's an example of the scoreboard that might appear:
 
-![ScoreBoard](./Resources/ReadmeImg/ScoreBoard.png "ScoreBoard")
+![ScoreBoard](./Ressources/ReadmeImg/ScoreBoard.png "ScoreBoard")
 
 You can see "<" & ">" on the left and right, and by clicking on them you can change statistics. Here you have the BestScore podium, but there are many other podiums:
 
