@@ -92,7 +92,7 @@ func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-// connexionHandler handles HTTP requests related to user connection (Signup and login)
+// connexionHandler handles HTTP requests related to user connection (Sign up and log in)
 func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -105,14 +105,14 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	case "CONNEXION", "PROFIL":
 		// If the status is CONNEXION or PROFIL, determine the next status based on the action
 		switch action {
-		case "Signup":
+		case "Sign up":
 			info.Status = "SIGNUP"
-		case "Login":
+		case "Log in":
 			info.Status = "LOGIN"
 		}
 	case "SIGNUP", "SIGNUP-ERROR":
 		// If the status is SIGNUP or SIGNUP-ERROR, handle the actions accordingly
-		if action == "Login" {
+		if action == "Log in" {
 			info.Status = "LOGIN"
 		} else {
 			// Get user input values
@@ -132,18 +132,18 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		}
 	case "LOGIN", "LOGIN-ERROR":
 		// If the status is LOGIN or LOGIN-ERROR, handle the actions accordingly
-		if action == "SIGNUP" {
+		if action == "Sign up" {
 			info.Status = "SIGNUP"
 		} else {
 			// Get user input values
 			email := r.FormValue("email")
 			passw := r.FormValue("password")
 
-			// Check login credentials
+			// Check log in credentials
 			if !Log(email, passw, data) {
 				info.Status = "LOGIN-ERROR"
 			} else {
-				// Set user data based on the login and reset status
+				// Set user data based on the log in and reset status
 				info.Data.SetUserData(email, data)
 				info.Status = ""
 			}
