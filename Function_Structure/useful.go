@@ -5,10 +5,10 @@ import (
 )
 
 // Init initializes the Hangman game by setting up necessary data and printing the word to be guessed
-func (myStruct *WebData) Init() {
+func (webData *WebData) Init() {
 	var infos HangManData
 	infos.SetData()
-	myStruct.Hangman = &infos
+	webData.Hangman = &infos
 }
 
 // Save updates user data accordingly

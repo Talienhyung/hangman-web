@@ -6,37 +6,37 @@ import (
 
 // Root initializes the game structure and sets up the handlers
 func Root() {
-	var myStruct WebData
+	var webData WebData
 	var userData Data
 	var board ScoreBoard
-	myStruct.Data = &userData
-	myStruct.Board = &board
-	myStruct.Theme = "brown"
+	webData.Data = &userData
+	webData.Board = &board
+	webData.Theme = "brown"
 	// Initialize the game
-	myStruct.Init()
+	webData.Init()
 
-	myStruct.Status = "CONNEXION"
+	webData.Status = "CONNEXION"
 
 	// Define the root handler
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		Home(w, r, myStruct)
+		Home(w, r, webData)
 	})
 	http.HandleFunc("/hangman", func(w http.ResponseWriter, r *http.Request) {
-		hangmanHandler(w, r, &myStruct)
+		hangmanHandler(w, r, &webData)
 	})
 	http.HandleFunc("/level", func(w http.ResponseWriter, r *http.Request) {
-		levelHandler(w, r, &myStruct)
+		levelHandler(w, r, &webData)
 	})
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-		connexionHandler(w, r, &myStruct)
+		connexionHandler(w, r, &webData)
 	})
 	http.HandleFunc("/header", func(w http.ResponseWriter, r *http.Request) {
-		headerHandler(w, r, &myStruct)
+		headerHandler(w, r, &webData)
 	})
 	http.HandleFunc("/board", func(w http.ResponseWriter, r *http.Request) {
-		boardHandler(w, r, &myStruct)
+		boardHandler(w, r, &webData)
 	})
 	http.HandleFunc("/theme", func(w http.ResponseWriter, r *http.Request) {
-		themeHandler(w, r, &myStruct)
+		themeHandler(w, r, &webData)
 	})
 }
