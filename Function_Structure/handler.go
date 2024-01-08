@@ -9,6 +9,24 @@ import (
 	. "github.com/Talienhyung/hangman"
 )
 
+// Home handles HTTP requests for the home page and renders the appropriate HTML templates
+func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
+	template, err := template.ParseFiles(
+		"./pages/index.html",
+		"./templates/game.html",
+		"./templates/connexion.html",
+		"./templates/footer.html",
+		"./templates/hangman.html",
+		"./templates/header.html",
+		"./templates/board.html",
+		"./templates/profil.html",
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	template.Execute(w, infos)
+}
+
 // hangmanHandler handles HTTP requests related to the Hangman game
 func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	// Check if the request method is not POST
@@ -26,6 +44,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		// Check the main game mechanics for the input letter
 		if info.Hangman.MainMecanics(letter) {
 			info.Status = "WIN"
+			info.Save()
 		} else if info.Hangman.EndGame() {
 			// Check if the game has ended
 			if string(info.Hangman.Word) == info.Hangman.ToFind {
@@ -33,6 +52,7 @@ func hangmanHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 			} else {
 				info.Status = "LOOSE"
 			}
+			info.Save()
 		} else {
 			info.Status = ""
 		}
@@ -50,7 +70,7 @@ func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		http.NotFound(w, r)
 	}
 	action := r.FormValue("action")
-	info.Reload(action)
+	info.Reload()
 
 	// Set the word for the Hangman based on the selected level
 	switch action {
@@ -132,23 +152,6 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 	// Redirect back to the main page
 	http.Redirect(w, r, "/", http.StatusSeeOther)
-}
-
-// Home handles HTTP requests for the home page and renders the appropriate HTML templates
-func Home(w http.ResponseWriter, r *http.Request, infos Structure) {
-	template, err := template.ParseFiles(
-		"./pages/index.html",
-		"./templates/game.html",
-		"./templates/connexion.html",
-		"./templates/footer.html",
-		"./templates/hangman.html",
-		"./templates/header.html",
-		"./templates/board.html",
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-	template.Execute(w, infos)
 }
 
 func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
