@@ -10,7 +10,7 @@
     <input type="submit" value="Login">
 </form>
 <form action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Signup">
+    <input class="button-connect" type="submit" name="action" value="Sign up">
 </form>
 
 {{end}}
@@ -29,14 +29,24 @@
     <input type="submit" value="Signup">
 </form>
 <form action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Login">
+    <input class="button-connect" type="submit" name="action" value="Log in">
 </form>
 
 {{end}}
 
 {{define "connexion page"}}
-<form class="connexion" action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Signup">
-    <input class="button-connect" type="submit" name="action" value="Login">
-</form>
+<div class="connexion-container">
+    <div class="left-connexion">
+        <img class="hangImage" src="../static/img/hang{{.Theme}}.jpg">
+    </div>
+    <div class="right-connexion">
+        <div class="item letter">I dare you to log in or create an account!</div>
+        <div class="connexion">
+            <form action="/login" method="post"><input class="button-connect" type="submit" name="action" value="Sign up"></form>
+            <form action="/login" method="post"><input class="button-connect" type="submit" name="action" value="Log in"></form>
+        </div>
+    </div>
+    
+</div>
+
 {{end}}
