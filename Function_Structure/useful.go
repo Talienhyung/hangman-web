@@ -5,14 +5,14 @@ import (
 )
 
 // Init initializes the Hangman game by setting up necessary data and printing the word to be guessed
-func (myStruct *Structure) Init() {
+func (myStruct *WebData) Init() {
 	var infos HangManData
 	infos.SetData()
 	myStruct.Hangman = &infos
 }
 
 // Save updates user data accordingly
-func (info *Structure) Save() {
+func (info *WebData) Save() {
 	// Check if the player won the previous game
 	if info.Status == "WIN" {
 		// Update score and win statistics based on the game level
@@ -46,7 +46,7 @@ func (info *Structure) Save() {
 }
 
 // Reload reloads the game state based on the provided level
-func (info *Structure) Reload() {
+func (info *WebData) Reload() {
 	info.Hangman.SetData()
 
 	// Reset game status
