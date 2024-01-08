@@ -10,12 +10,12 @@
     <input type="submit" value="Login">
 </form>
 <form action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Signin">
+    <input class="button-connect" type="submit" name="action" value="Signup">
 </form>
 
 {{end}}
 
-{{define "signin"}}
+{{define "signup"}}
 <form action="/login" method="post">
     <label for="Username">Username :</label>
     <input type="text" id="username" name="username"  maxlength="6" required>
@@ -26,7 +26,7 @@
     <label for="password">Password :</label>
     <input type="password" id="password" name="password" required>
     <br>
-    <input type="submit" value="Signin">
+    <input type="submit" value="Signup">
 </form>
 <form action="/login" method="post">
     <input class="button-connect" type="submit" name="action" value="Login">
@@ -36,7 +36,7 @@
 
 {{define "connexion page"}}
 <form class="connexion" action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Signin">
+    <input class="button-connect" type="submit" name="action" value="Signup">
     <input class="button-connect" type="submit" name="action" value="Login">
 </form>
 {{end}}

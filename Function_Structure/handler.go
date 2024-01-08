@@ -92,7 +92,7 @@ func levelHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
-// connexionHandler handles HTTP requests related to user connection (signin and login)
+// connexionHandler handles HTTP requests related to user connection (Signup and login)
 func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
@@ -105,13 +105,13 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	case "CONNEXION", "PROFIL":
 		// If the status is CONNEXION or PROFIL, determine the next status based on the action
 		switch action {
-		case "Signin":
-			info.Status = "SIGNIN"
+		case "Signup":
+			info.Status = "SIGNUP"
 		case "Login":
 			info.Status = "LOGIN"
 		}
-	case "SIGNIN", "SIGNIN-ERROR":
-		// If the status is SIGNIN or SIGNIN-ERROR, handle the actions accordingly
+	case "SIGNUP", "SIGNUP-ERROR":
+		// If the status is SIGNUP or SIGNUP-ERROR, handle the actions accordingly
 		if action == "Login" {
 			info.Status = "LOGIN"
 		} else {
@@ -122,7 +122,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 
 			// Check if the email is already used
 			if EmailAlreadyUsed(email, data) {
-				info.Status = "SIGNIN-ERROR"
+				info.Status = "SIGNUP-ERROR"
 			} else {
 				// Set new user data and upload it
 				data = info.Data.SetNewUserData(email, passw, username, data)
@@ -132,8 +132,8 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 		}
 	case "LOGIN", "LOGIN-ERROR":
 		// If the status is LOGIN or LOGIN-ERROR, handle the actions accordingly
-		if action == "Signin" {
-			info.Status = "SIGNIN"
+		if action == "SIGNUP" {
+			info.Status = "SIGNUP"
 		} else {
 			// Get user input values
 			email := r.FormValue("email")
