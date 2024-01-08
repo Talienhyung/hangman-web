@@ -60,14 +60,6 @@ form{
   height: auto;
 }
 
-.connexion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-  margin: 0;
-}
-
 /* ==========End============== */
 
 
@@ -300,9 +292,9 @@ header {
 .calque img {
   max-width: 100%;
   height: auto;
-  width: 20%;
-  margin-top: 40vh;
-  margin-left: 80vw;
+  width: 23%;
+  margin-top: 5vh;
+  margin-left: 75vw;
 }
 
 .parent {
@@ -320,6 +312,54 @@ header {
 .plan2 {
   z-index: 1;
   width: 100%;
+}
+
+/* ==========End============== */
+
+/* ==========Connexion page============== */
+
+.connexion {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.connexion-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.right-connexion{
+  width: 40%;
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  background-color: var(--center-hover);
+  padding: 10px;
+}
+
+.left-connexion{
+  width: 40%;
+}
+
+.hangImage{
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  img {
+    display: none;
+  }
+  .right-connexion{
+    margin-top: 20px;
+    width: 100%;
+  }
 }
 
 /* ==========End============== */
