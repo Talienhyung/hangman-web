@@ -19,7 +19,7 @@
 
 
 {{if eq .Status "CONNEXION"}}
-  {{template "connexion page"}}
+  {{template "connexion page" .}}
 {{else if or (eq .Status "LOGIN") (eq .Status "LOGIN-ERROR")}}
   {{template "login"}}
   {{if eq .Status "LOGIN-ERROR"}}
@@ -34,7 +34,7 @@
   {{template "board" .}}
 {{else if eq .Status "PROFIL"}}
   {{if eq .Data.Email ""}}
-    {{template "connexion page"}}
+    {{template "connexion page" .}}
   {{else}}
     {{template "profil" .}}
   {{end}}
