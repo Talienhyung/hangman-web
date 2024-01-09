@@ -154,6 +154,29 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
+// connexionHandler handles HTTP requests related to user connection (Sign up and log in)
+func disconnectHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+	if r.Method != http.MethodPost {
+		http.NotFound(w, r)
+	}
+
+	info.Data = &Data{
+		Username:  "",
+		Email:     "",
+		Password:  "",
+		Win:       0,
+		Lose:      0,
+		Score:     0,
+		BestScore: 0,
+		WinHard:   0,
+		WinMedium: 0,
+		WinEasy:   0,
+	}
+
+	// Redirect back to the main page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
 // headerHandler handles the POST request for various actions related to the header
 func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 	// Check if the request method is POST, otherwise return a 404 Not Found
