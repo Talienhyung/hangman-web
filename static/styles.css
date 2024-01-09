@@ -131,6 +131,12 @@ header {
 }
 
 
+@media screen and (max-width: 600px){
+  header{
+    display: none;
+  }
+}
+
 #menuToggle {
   display: block;
   position: relative;
@@ -140,6 +146,12 @@ header {
   -webkit-user-select: none;
   user-select: none;
   width: 10%;
+}
+
+#menuToggle label {
+  display: block;
+  padding: 10px 0;
+  font-size: 22px;
 }
 
 #menuToggle a {
@@ -203,9 +215,12 @@ header {
   transform: rotate(-45deg) translate(0, -1px);
 }
 
+#menuToggle input:checked ~ form {
+  transform: none;
+}
+
 #menu {
   position: absolute;
-  width: 300px;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
@@ -215,21 +230,6 @@ header {
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-}
-
-#menu li {
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-#menuToggle input:checked ~ ul {
-  transform: none;
-}
-
-@media screen and (max-width: 600px){
-  header{
-    display: none;
-  }
 }
 
 
@@ -430,7 +430,6 @@ header {
   height: auto;
   width: 23%;
   margin-top: 5vh;
-  margin-left: 75vw;
 }
 
 .parent {
@@ -448,6 +447,12 @@ header {
 .plan2 {
   z-index: 1;
   width: 100%;
+}
+
+.image-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 
@@ -571,3 +576,35 @@ input[type="password"] {
   justify-content: center;
 }
 /* ==========End============== */
+
+/* ==========Profile============== */
+
+.container-profil{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-profil img{
+  width: 20%;
+  height: auto;
+}
+
+.coffee-background{
+  background-color: var(--border-button);
+}
+
+.bottom-profile{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.profil-contain{
+  border-radius: 3px;
+  padding: 10px;
+  width: 60%;
+  overflow: hidden;
+}
