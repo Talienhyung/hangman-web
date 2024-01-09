@@ -21,6 +21,7 @@ footer {
     padding-top: 5px;
     padding-bottom: 5px;
     width: 100%;
+    overflow:hidden;
 }
 
 /* ==========End============== */
@@ -145,23 +146,13 @@ header {
   z-index: 1;
   -webkit-user-select: none;
   user-select: none;
-  width: 10%;
+  width: 90%;
 }
 
 #menuToggle label {
   display: block;
   padding: 10px 0;
   font-size: 22px;
-}
-
-#menuToggle a {
-  text-decoration: none;
-  color: #232323;
-  transition: color 0.3s ease;
-}
-
-#menuToggle a:hover {
-  color: tomato;
 }
 
 #menuToggle input {
@@ -183,7 +174,7 @@ header {
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: #cdcdcd;
+  background: var(--writing);
   border-radius: 3px;
   z-index: 1;
   transform-origin: 4px 0px;
@@ -203,7 +194,7 @@ header {
 #menuToggle input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
+  background: var(--center-hover);
 }
 
 #menuToggle input:checked ~ span:nth-last-child(3) {
@@ -221,14 +212,14 @@ header {
 
 #menu {
   position: absolute;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
+  margin: -100px 0 0 -100px;
+  padding: 100px;
   padding-top: 125px;
-  background: #ededed;
+  background: var(--border-button);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
+  transform: translate(-100%, 0); 
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
@@ -277,7 +268,7 @@ header {
     flex-direction: row;
     justify-content: space-around;
     display: flex;
-    overflow: hidden;
+    overflow:hidden;
     order: 2;
   }
   
@@ -289,7 +280,7 @@ header {
     flex-direction: column;
     justify-content: space-around;
     display: flex;
-    overflow: hidden;
+    overflow:hidden;
   }
 
   .main-container{
@@ -313,7 +304,7 @@ header {
     flex-direction: column;
     justify-content: space-around;
     display: flex;
-    overflow: hidden;
+    overflow:hidden;
   }
   
   .container-center{
@@ -385,7 +376,7 @@ header {
   flex-direction: column;
   justify-content: space-around;
   display: flex;
-  overflow: hidden;
+  overflow:hidden;
 }
 
 .first{
@@ -464,7 +455,7 @@ header {
     flex-direction: row;
     justify-content: space-around;
     display: flex;
-    overflow: hidden;
+    overflow:hidden;
     height: 5%;
     order: 2;
   }
@@ -473,7 +464,7 @@ header {
     height: auto;
     justify-content: flex-start;
     display: flex;
-    overflow: hidden;
+    overflow:hidden;
     margin-top: 25px;
   }
   .plan1 .main-container .container-center{
@@ -525,6 +516,7 @@ header {
   justify-content: space-evenly;
   background-color: var(--center-hover);
   padding: 10px;
+  overflow: hidden;
 }
 
 .left-connexion{
@@ -606,5 +598,5 @@ input[type="password"] {
   border-radius: 3px;
   padding: 10px;
   width: 60%;
-  overflow: hidden;
+  overflow:hidden;
 }
