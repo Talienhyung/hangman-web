@@ -41,7 +41,7 @@
         <div class="title">Hangman</div>
     </div>
     <div class="header-right">
-        <form action="/header" method="post"><input type="submit" name="action" value="Profil"></form>
+        <form action="/header" method="post"><input type="submit" name="action" value="Profile"></form>
         <form action="/header" method="post"><input type="submit" name="action" value="ScoreBoard"></form>
         <form action="/theme" method="post">
             <select id="dropdown" name="dropdown">
@@ -55,4 +55,18 @@
         </form>
     </div>
 </header>
+<nav role="navigation" id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+        <a><li class="titre">HANGMAN</li></a>
+        <form action="/header" method="post">
+            <input type="submit" name="action" value="Play">
+            <input type="submit" name="action" value="Profile">
+            <input type="submit" name="action" value="ScoreBoard">
+        </form>
+    </ul>
+</nav>
 {{end}}
