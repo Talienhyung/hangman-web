@@ -180,7 +180,7 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *Structure) {
 		} else {
 			infos.Status = ""
 		}
-	case "Profil":
+	case "Profile":
 		// Set the status to "PROFIL" for profile-related actions
 		infos.Status = "PROFIL"
 	}
