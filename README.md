@@ -45,7 +45,6 @@ And that's all there is to it! Now you can move on to the next step.
 - [Connexion Page](#connexion-page)
 - [Play](#play)
 - [Score Board](#score-board)
-- [Licence](#license)
 
 
 ### Connexion page

@@ -1,3 +1,28 @@
 {{define "profil"}}
-
+<div class="container-profil">
+    <div class="item">
+        <img src="../static/img/Logo{{.Theme}}.png">
+    </div>
+    <div class="item {{if eq .Theme "brown"}}coffee-background{{end}} profil-contain">
+        <div class="attempts">{{.Data.Username}}</div>
+        <div class="letter">{{.Data.Email}}</div>
+    </div>
+    <br>
+    <div class="bottom-profile {{if eq .Theme "brown"}}coffee-background{{end}} profil-contain">
+        <div class="item">
+            <div class="letter">Win</div>
+            <div class="attempts">{{.Data.Win}}</div>
+        </div>
+        <div class="item">
+            <div class="letter">Best Score</div>
+            <div class="attempts">{{.Data.BestScore}}</div>
+        </div>
+        <div class="item">
+            <div class="letter">Lose</div>
+            <div class="attempts">{{.Data.Lose}}</div>
+        </div>
+    </div>
+    <br>
+    <form action="/disconnect" method="post"><input type="submit" name="action" value="Disconnect"></form>
+</div>
 {{end}}
