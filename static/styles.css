@@ -528,7 +528,9 @@ header {
 }
 
 @media screen and (max-width: 600px) {
-  img {
+  .right-connexion img,
+  .image-board img
+  {
     display: none;
   }
   .right-connexion{
