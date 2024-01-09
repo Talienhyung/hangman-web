@@ -22,11 +22,11 @@ func (user Data) MakeBoard(tab int, allData [][]string) []string {
 	case 0:
 		board = []string{"nobody", "nobody", "nobody"}
 	case 1:
-		board = []string{allData[0][0] + " -" + allData[0][tab], "nobody", "nobody"}
+		board = []string{allData[0][0] + " " + allData[0][tab], "nobody", "nobody"}
 	case 2:
-		board = []string{allData[0][0] + " -" + allData[0][tab], allData[1][0] + " -" + allData[1][tab], "nobody"}
+		board = []string{allData[0][0] + " " + allData[0][tab], allData[1][0] + " " + allData[1][tab], "nobody"}
 	default:
-		board = []string{allData[0][0] + " -" + allData[0][tab], allData[1][0] + " -" + allData[1][tab], allData[2][0] + " -" + allData[2][tab]}
+		board = []string{allData[0][0] + " " + allData[0][tab], allData[1][0] + " " + allData[1][tab], allData[2][0] + " " + allData[2][tab]}
 	}
 
 	var sentence string

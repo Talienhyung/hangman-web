@@ -30,6 +30,9 @@ func Root() {
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		connexionHandler(w, r, &webData)
 	})
+	http.HandleFunc("/disconnect", func(w http.ResponseWriter, r *http.Request) {
+		disconnectHandler(w, r, &myStruct)
+	})
 	http.HandleFunc("/header", func(w http.ResponseWriter, r *http.Request) {
 		headerHandler(w, r, &webData)
 	})

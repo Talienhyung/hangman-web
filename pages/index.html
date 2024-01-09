@@ -19,22 +19,16 @@
 
 
 {{if eq .Status "CONNEXION"}}
-  {{template "connexion page"}}
+  {{template "connexion page" .}}
 {{else if or (eq .Status "LOGIN") (eq .Status "LOGIN-ERROR")}}
-  {{template "login"}}
-  {{if eq .Status "LOGIN-ERROR"}}
-    <p>Wrong email or passw</p>
-  {{end}}
+  {{template "login" .}}
 {{else if or (eq .Status "SIGNUP") (eq .Status "SIGNUP-ERROR")}}
-  {{template "signup"}}
-  {{if eq .Status "SIGNUP-ERROR"}}
-    <p>Email already used</p>
-  {{end}}
+  {{template "signup" .}}
 {{else if eq .Status "SCOREBOARD"}}
   {{template "board" .}}
 {{else if eq .Status "PROFIL"}}
   {{if eq .Data.Email ""}}
-    {{template "connexion page"}}
+    {{template "connexion page" .}}
   {{else}}
     {{template "profil" .}}
   {{end}}

@@ -1,14 +1,19 @@
 {{define "board"}}
 <div class="parent">
 <div class="calque plan2">
-  <img src="../static/img/Perso.png">
+  <div class="image-board"><img src="../static/img/Logo{{.Theme}}.png">
+  <img src="../static/img/Logo{{.Theme}}.png"></div>
+  <div class="space"></div>
 </div>
 <div class="calque plan1">
-<div class="main-container phone-mode">
+<div class="main-container">
   <div class="change">
     <form action="/board" method="post">
       <input type="submit" name="action" value="<">
     </form>
+    <div class="phone-mode" ><form action="/board" method="post">
+      <input type="submit" name="action" value=">">
+    </form></div>
   </div>
   <div class="container-center order">
     <div class="item attempts">
@@ -51,7 +56,7 @@
     </div>
     <div class="item letter">{{.Board.Sentence}}</div>
   </div>
-  <div class="change">
+  <div class="change right">
     <form action="/board" method="post">
       <input type="submit" name="action" value=">">
     </form>
