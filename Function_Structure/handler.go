@@ -155,7 +155,7 @@ func connexionHandler(w http.ResponseWriter, r *http.Request, info *WebData) {
 }
 
 // connexionHandler handles HTTP requests related to user connection (Sign up and log in)
-func disconnectHandler(w http.ResponseWriter, r *http.Request, info *Structure) {
+func disconnectHandler(w http.ResponseWriter, r *http.Request, info *WebData) {
 	if r.Method != http.MethodPost {
 		http.NotFound(w, r)
 	}
