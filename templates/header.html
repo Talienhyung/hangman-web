@@ -1,38 +1,4 @@
 {{define "header"}}
-<!-- <header>
-    <nav role="navigation">
-        <div id="menuToggle">
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          <ul id="menu">
-            <a><li><div class="header-left">
-                <div><form action="/header" method="post"><input type="submit" name="action" value="Play"></form></div>
-                <div class="title">Hangman</div>
-            </div></li></a>
-            <div class="header-right">
-                <div><form action="/header" method="post"><input type="submit" name="action" value="Profil"></form></div>
-                <div><form action="/header" method="post"><input type="submit" name="action" value="ScoreBoard"></form></div>
-                <div><form action="/theme" method="post">
-                    <label for="dropdown">Theme</label>
-                    <select id="dropdown" name="dropdown">
-                        <option value="">-Change theme-</option>
-                        <option value="blue">Lan Zhan</option>
-                        <option value="red">Wei Wing</option>
-                        <option value="brown">Coffee</option>
-                        <option value="green">Shen Qing Qiu</option>
-                    </select>
-                    <button type="submit">Change</button>
-                </form></div>
-            </div>
-            </form>
-          </ul>
-        </div>
-      </nav>
-</header> -->
-
-
 <header>
     <div class="header-left">
         <form action="/header" method="post">
@@ -60,13 +26,13 @@
     <span></span>
     <span></span>
     <span></span>
-    <ul id="menu">
-        <a><li class="titre">HANGMAN</li></a>
-        <form action="/header" method="post">
-            <input type="submit" name="action" value="Play">
-            <input type="submit" name="action" value="Profile">
-            <input type="submit" name="action" value="ScoreBoard">
-        </form>
-    </ul>
+    <form action="/header" method="post" id="menu">
+        <div class="titre">HANGMAN</div>
+        <label>Play<input type="submit" name="action" value="Play"></label>
+        <label>Profile<input type="submit" name="action" value="Profile"></label>
+        <label>ScoreBoard<input type="submit" name="action" value="ScoreBoard"></label>
+    </form>
 </nav>
+
+
 {{end}}
