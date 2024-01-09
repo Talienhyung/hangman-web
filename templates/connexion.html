@@ -1,36 +1,64 @@
 {{define "login"}}
-
-<form action="/login" method="post">
-    <label for="Email">Email :</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="Password">Password :</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <input type="submit" value="Login">
-</form>
-<form action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Sign up">
-</form>
+<div class="connexion-container">
+    <div class="left-connexion">
+        <img class="hangImage" src="../static/img/hang{{.Theme}}.jpg">
+    </div>
+    <div class="right-connexion">
+        <div class="item letter">{{if eq .Status "LOGIN-ERROR"}}Wrong email or password
+            {{else}}I see you've chosen to log in
+            {{end}}</div>
+        <div class="connexion">  
+            <form action="/login" method="post">
+                <br>
+                <label for="Email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                <label for="Password">Password :</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Log in">
+            </form>
+        </div>
+        <div class="change-choice">
+            <form action="/login" method="post">
+                <input class="button-connect" type="submit" name="action" value="Sign up">
+            </form>
+        </div>
+    </div>
+</div>
 
 {{end}}
 
 {{define "signup"}}
-<form action="/login" method="post">
-    <label for="Username">Username :</label>
-    <input type="text" id="username" name="username"  maxlength="6" required>
-    <br>
-    <label for="Email">Email :</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="password">Password :</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <input type="submit" value="Signup">
-</form>
-<form action="/login" method="post">
-    <input class="button-connect" type="submit" name="action" value="Log in">
-</form>
+<div class="connexion-container">
+    <div class="left-connexion">
+        <img class="hangImage" src="../static/img/hang{{.Theme}}.jpg">
+    </div>
+    <div class="right-connexion">
+        <div class="item letter">{{if eq .Status "SIGNUP-ERROR"}}Email already used
+            {{else}}I see you've chosen to create an account
+            {{end}}</div>
+        <div class="connexion">
+            <form action="/login" method="post">
+                <br>
+                <label for="Username">Username :</label>
+                <input type="text" id="username" name="username"  maxlength="6" required>
+                
+                <label for="Email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="password" required>
+                
+                <input type="submit" value="Sign up">
+            </form>
+        </div>
+        <div class="change-choice">
+            <form action="/login" method="post">
+                <input class="button-connect" type="submit" name="action" value="Log in">
+            </form>
+        </div>
+        
+    </div>
+</div>
 
 {{end}}
 
@@ -46,7 +74,6 @@
             <form action="/login" method="post"><input class="button-connect" type="submit" name="action" value="Log in"></form>
         </div>
     </div>
-    
 </div>
 
 {{end}}
