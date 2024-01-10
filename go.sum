@@ -4,6 +4,8 @@ github.com/Talienhyung/hangman v0.0.0-20231212082750-4a5ca2f713fc h1:RtQI2oaWC+q
 github.com/Talienhyung/hangman v0.0.0-20231212082750-4a5ca2f713fc/go.mod h1:/OZdPD57Rs8hRoimggx2+9fgc0VoNre3FsjNfvet090=
 github.com/Talienhyung/hangman v0.0.0-20231212103741-6a791e12bd45 h1:uVqiDIySsPsitD3BsdCunTM9T8rFR7TziDShUDV1SLc=
 github.com/Talienhyung/hangman v0.0.0-20231212103741-6a791e12bd45/go.mod h1:p+fpbHy1NTxkpICbKXPH4FnLyP01ooeliaddzxiLlQQ=
+github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
+github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
 github.com/mattn/go-runewidth v0.0.9 h1:Lm995f3rfxdpd6TSmuVCHVb/QhupuXlYr8sCI/QdE+0=
 github.com/mattn/go-runewidth v0.0.9/go.mod h1:H031xJmbD/WCDINGzjvQ9THkh0rPKHF+m2gUSrubnMI=
 github.com/mattn/go-runewidth v0.0.15 h1:UNAjwbU9l54TA3KzvqLGxwWjHmMgBUVhBiTjelZgg3U=
