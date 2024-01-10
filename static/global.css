@@ -1,7 +1,13 @@
 body {
-    margin: 0;
-    line-height: normal;
-    font-family: var(--font-kodchasan);
-  }
-  
+  line-height: normal;
+  background-color: var(--background);
+  font-family: var(--font-kodchasan);
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+}
+
 
