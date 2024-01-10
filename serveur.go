@@ -3,6 +3,8 @@ package main
 import (
 	hangmanweb "hangmanweb/Function_Structure"
 	"net/http"
+	"log"
+	"os"
 )
 
 func main() {
@@ -12,5 +14,5 @@ func main() {
 	fss := http.FileServer(http.Dir("Ressources/"))
 	http.Handle("/Ressources/", http.StripPrefix("/Ressources", fss))
 	//http.ListenAndServe(":8080", nil)
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
