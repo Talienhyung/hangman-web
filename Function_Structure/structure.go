@@ -1,10 +1,10 @@
 package hangmanweb
 
-import . "github.com/Talienhyung/hangman"
+import "github.com/Talienhyung/hangman"
 
 // Main structure that groups together all the structures and variables required for the hangman web to function properly
 type WebData struct {
-	Hangman *HangManData
+	Hangman *hangman.HangManData
 	Data    *Data
 	Board   *ScoreBoard
 	Status  string

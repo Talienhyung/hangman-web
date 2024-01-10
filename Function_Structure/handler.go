@@ -193,7 +193,6 @@ func headerHandler(w http.ResponseWriter, r *http.Request, infos *WebData) {
 		// Set the status to "SCOREBOARD" and update the score board
 		infos.Status = "SCOREBOARD"
 		infos.Board.SetScoreBoard(infos.Data.MakeBoard(3, ReadAllData()))
-		fmt.Println(infos.Board)
 	case "Play":
 		// Check if the player has won, lost, or the game is still ongoing
 		if string(infos.Hangman.Word) == infos.Hangman.ToFind {

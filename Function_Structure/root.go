@@ -11,7 +11,7 @@ func Root() {
 	var board ScoreBoard
 	webData.Data = &userData
 	webData.Board = &board
-	webData.Theme = "brown"
+	webData.Theme = "green"
 	// Initialize the game
 	webData.Init()
 

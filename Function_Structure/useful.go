@@ -1,12 +1,12 @@
 package hangmanweb
 
 import (
-	. "github.com/Talienhyung/hangman"
+	"github.com/Talienhyung/hangman"
 )
 
 // Init initializes the Hangman game by setting up necessary data and printing the word to be guessed
 func (webData *WebData) Init() {
-	var infos HangManData
+	var infos hangman.HangManData
 	infos.SetData()
 	webData.Hangman = &infos
 }

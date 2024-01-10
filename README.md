@@ -1,6 +1,6 @@
 # HangManWeb
 
-Hangman is a classic word guessing game where players have to guess a word or phrase by suggesting letters. Guess correctly to prevent the character from being hanged! A fun game to test your vocabulary and deduction skills."
+Hangman is a classic word guessing game where players have to guess a word by suggesting letters. Guess correctly to prevent the character from being hanged! A fun game to test your vocabulary and deduction skills.
 
 ***
 ## Table of contents
@@ -33,6 +33,12 @@ To do this, still in your terminal, enter the following command:
 ```bash
 $ ./hangmanweb
 ```
+or
+
+```bash
+$ go run serveur.go
+```
+
 Then launch your favorite browser and enter the following url:
 ```
 localhost:8080
@@ -45,21 +51,22 @@ And that's all there is to it! Now you can move on to the next step.
 - [Connexion Page](#connexion-page)
 - [Play](#play)
 - [Score Board](#score-board)
+- [Theme](#theme)
 
 
 ### Connexion page
 
-Now that you've launched the game, you can either log in, register or play without an account !
+Now that you've launched the game, you can either *log in*, *register* or *play without an account* !
 Once you've started the game, you'll see an erface asking you to login or create an account.
 
 #### 1. Signup
 
-
 If you press the signup button, ![SignUp](./Ressources/ReadmeImg/Signup.png "Signup") you'll be asked to create an account with :
 
-- An e-mail address
-- A username
-- A password
+- An **e-mail** address
+- A **username**
+- A **password**
+- ~~Your credit card information~~
 
 Remember all this information, as it will be essential for reconnecting.
 
@@ -69,10 +76,11 @@ If you press the login button, ![Login](./Ressources/ReadmeImg/Login.png "Login"
 
 To log in you'll need :
 
-- Your account email address
-- Your account password
+- Your account **email** address
+- Your account **password**
+- ~~Your dog's name~~
 
-If you've lost your password or your email address, you won't be able to retrieve them, create a new account or play without one.
+> If you've lost your password or your email address, you won't be able to retrieve them, create a new account or play without one.
 
 #### 3. Continue without an account
 
@@ -80,7 +88,7 @@ If you want to continue without an account, no worries, just click on the play b
 
 ![Play](./Ressources/ReadmeImg/Play.png "Play")
 
-**Please note! If you play without an account, your score will not be saved if you quit the game!**
+***Please note! If you play without an account, your score will not be saved if you quit the game!***
 
 If you'd like to create an account or log in later, simply click on the Profile button in the header and you'll be redirected to the login page.
 ![Profile](./Ressources/ReadmeImg/Profile.png "Profile")
@@ -108,6 +116,7 @@ Harder words are on offer for this level! A word found will earn you three point
 #### 2. Score / BestScore
 
 ![Profile](./Ressources/ReadmeImg/Stat.png)
+
 On the right-hand side of the screen, you'll see a score and a bestscore! "Score" is your current score, which increases with the number of words you find, but decreases to 0 if you lose even once! So if your current score exceeds your Bestscore, it replaces it!
 
 #### 3. The Game
@@ -122,16 +131,17 @@ Here's an example of a game in progress
 
 Details of the different elements :
 
-- Top right: Letter you've already suggested
-- Center right: Number of bad letters allowed before hanging
-- Bottom right: Word you've already entered 
+- **Top right**: Letter you've already suggested
+- **Center right**: Number of bad letters allowed before hanging
+- **Bottom right**: Word you've already entered 
 > Note that if you submit the wrong word, you lose two attempts.
-- Top left: Word to be found
-- Center left: Hangman that appears as you submit the wrong word.
-- Bottom left: Submit
+- **Top left**: Word to be found
+- **Center left**: Hangman that appears as you submit the wrong word.
+- **Bottom left**: Submit
 
 
 ### ScoreBoard
+
 To access the scoreboard, simply click on the ScoreBoard button at the top of the page.
 ![Score](./Ressources/ReadmeImg/Score.png "Score")
 
@@ -150,6 +160,25 @@ You can see "<" & ">" on the left and right, and by clicking on them you can cha
 > - WinEasy: Podium for those who won the most games with level easy
 
 On each podium step you can see the user's nickname and score, and below the podium you can see your position. If you're not logged in, your position won't be displayed (see example above).
+
+
+### Theme
+
+Still in the header you can access different themes, select one and press the "ok" button to change theme!
+
+![Theme](./Ressources/ReadmeImg/Theme.png)
+
+> Four themes are proposed, referring to characters from the works of *Mo Xiang Tong Xiu*.
+
+The **four themes** you could access are :
+
+- **Lan Zhan**: Be immersed in the sky and clouds with this blue-hued theme.
+- **Wei Wing**: The darkest theme in the palette, offering shades of red and black. 
+- **Pei Ming**: Also known as the "coffee" theme, this one will suit you if you like brown and beige hues.
+- **Shen Qing Qiu**: With different shades of green, this theme will give you a breath of fresh air in nature!
+
+> The default theme is *Shen Qing Qiu*
+
 
 ***
 ## License
